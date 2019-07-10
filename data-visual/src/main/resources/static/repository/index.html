@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>小麦智慧生产知识库</title>
+		<link rel="stylesheet" type="text/css" href="../../assets/repository/css/app.css" />
+		 <link rel="stylesheet" type="text/css" href="../../assets/style.css" />
+	</head>
+	
+	<body>
+		<!--<header id="header">
+			<h3 class="title">数图 - 基于ECharts V4.2</h3>
+		</header>-->
+	<div class="top ">
+		<div class="left nav ">
+			<div class="index">
+				<a href="../index.html" ><img src="../../assets/platform/images/index.png" alt=""></a>
+			</div>
+			<ul >
+				<li class="">
+					<img src="../../assets/platform/images/border.jpg" alt="边框">
+					<a href="../yield/index.html">产量监测</a>
+					<img src="../../assets/platform/images/border2.jpg" alt="边框">
+				</li>
+				<li>
+					<img src="../../assets/platform/images/border.jpg" alt="边框">
+					<a href="../monitor/index.html">灾害预警</a>
+					<img src="../../assets/platform/images/border2.jpg" alt="边框">
+				</li>
+			</ul>
+		</div>
+
+		<div class="title">
+			小麦智慧生产知识库
+	</div>
+
+		<div class="right nav">
+			<ul >
+				<li class="">
+					<img src="../../assets/platform/images/border.jpg" alt="边框">
+					<a href="../weather/index.html">物联网</a>
+					<img src="../../assets/platform/images/border2.jpg" alt="边框">
+				</li>
+				<li>
+					<img src="../../assets/platform/images/border.jpg" alt="边框">
+					<a href="index.html">知识库</a>
+					<img src="../../assets/platform/images/border2.jpg" alt="边框">
+				</li>
+			</ul>
+		</div>
+
+
+
+	</div>
+	<div class="img_1">
+        <img src="../../assets/repository/images/head_1.gif" alt="">
+    </div>
+		
+		<div id="container">
+			<div class="chart-div" id="treeChart">
+				<div class="chart-loader"><div class="loader"></div></div>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="../../assets/repository/js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="../../assets/repository/js/echarts.min.js"></script>
+		<script type="text/javascript" src="../../assets/repository/js/echarts-theme-shine.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				//初始化报表对象并指定其风格
+				const treeChart = echarts.init(document.getElementById("treeChart"), 'shine');
+				//虚拟数据
+				const treeData1 = {
+					name: '品种',
+					symbolSize: 10,
+					itemStyle: {color: '#d4237a'},
+					label: {fontSize: 14},
+					children: [
+						{
+							name: '冬性',
+							symbolSize: 8,
+							itemStyle: {color: '#d4237a'},
+							children: [
+								{name: '星良99', itemStyle: {color: '#d4237a'}},
+								{name: '婴泊700', itemStyle: {color: '#d4237a'}},
+								{name: '石家庄8号', itemStyle: {color: '#d4237a'}},
+								{name: '冀5265', itemStyle: {color: '#d4237a'}},
+								{name: '济麦22', itemStyle: {color: '#d4237a'}},
+								{name: '宁麦9号', itemStyle: {color: '#d4237a'}},
+								{name: '石新616', itemStyle: {color: '#d4237a'}},
+								{name: '京冬22', itemStyle: {color: '#d4237a'}}
+							]
+						},
+						{
+							name: '半冬性',
+							symbolSize: 8,
+							itemStyle: {color: '#d4237a'},
+							children: [
+								{name: '豫农416', itemStyle: {color: '#d4237a'}},
+								{name: '周麦32号', itemStyle: {color: '#d4237a'}},
+								{name: '郑麦7698', itemStyle: {color: '#d4237a'}},
+								{name: '徐麦33', itemStyle: {color: '#d4237a'}},
+								{name: '周麦28号', itemStyle: {color: '#d4237a'}},
+								{name: '华成3366', itemStyle: {color: '#d4237a'}},
+								{name: '洛麦26', itemStyle: {color: '#d4237a'}}
+							]
+						},
+						{
+							name: '春性小麦',
+							symbolSize: 8,
+							itemStyle: {color: '#d4237a'},
+							children: [
+								{name: '镇麦9号', itemStyle: {color: '#d4237a'}},
+								{name: '扬麦18', itemStyle: {color: '#d4237a'}},
+								{name: '生选6号', itemStyle: {color: '#d4237a'}},
+								{name: '龙麦33', itemStyle: {color: '#d4237a'}},
+								{name: '宁麦16', itemStyle: {color: '#d4237a'}},
+								{name: '镇麦168', itemStyle: {color: '#d4237a'}},
+								{name: '西科麦4号', itemStyle: {color: '#d4237a'}},
+								{name: '浙丰2号', itemStyle: {color: '#d4237a'}}
+							]
+						},
+						{
+							name: '弱春性小麦',
+							symbolSize: 8,
+							itemStyle: {color: '#d4237a'},
+							children: [
+								{name: '新麦208', itemStyle: {color: '#d4237a'}},
+								{name: '平安7号', itemStyle: {color: '#d4237a'}},
+								{name: '中焦2号', itemStyle: {color: '#d4237a'}},
+								{name: '新麦21', itemStyle: {color: '#d4237a'}},
+								{name: '偃育898', itemStyle: {color: '#d4237a'}},
+								{name: '豫农949', itemStyle: {color: '#d4237a'}},
+								{name: '邓麦996', itemStyle: {color: '#d4237a'}},
+								{name: '西农509', itemStyle: {color: '#d4237a'}}
+							]
+						},
+						{
+							name: '弱冬性小麦',
+							symbolSize: 8,
+							itemStyle: {color: '#d4237a'},
+							children: [
+								{name: '中麦175', itemStyle: {color: '#d4237a'}},
+								{name: '山农优麦2号', itemStyle: {color: '#d4237a'}},
+								{name: '武都16号', itemStyle: {color: '#d4237a'}},
+								{name: '衡136', itemStyle: {color: '#d4237a'}},
+								{name: '运旱20410', itemStyle: {color: '#d4237a'}},
+								{name: '长6154', itemStyle: {color: '#d4237a'}},
+								{name: '多丰2000', itemStyle: {color: '#d4237a'}}
+							]
+						}
+					]
+				};
+				const treeData2 = {
+					name: '病害',
+					symbolSize: 10,
+					itemStyle: {color: '#e6b600'},
+					label: {fontSize: 14},
+					children: [
+						{
+							name: '锈病',
+							symbolSize: 8,
+							itemStyle: {color: '#e6b600'},
+							children: [
+								{name: '小麦杆锈病', itemStyle: {color: '#e6b600'}},
+								{name: '小麦叶锈病', itemStyle: {color: '#e6b600'}},
+								{name: '小麦条锈病', itemStyle: {color: '#e6b600'}}
+							]
+						},
+						{
+							name: '黑穗病',
+							symbolSize: 8,
+							itemStyle: {color: '#e6b600'},
+							children: [
+								{name: '散黑穗', itemStyle: {color: '#e6b600'}},
+								{name: '腥黑穗', itemStyle: {color: '#e6b600'}},
+								{name: '秆黑粉', itemStyle: {color: '#e6b600'}}
+					
+							]
+						},
+						{
+							name: '其他',
+							symbolSize: 8,
+							itemStyle: {color: '#e6b600'},
+							children: [
+								{name: '白粉', itemStyle: {color: '#e6b600'}},
+								{name: '赤霉', itemStyle: {color: '#e6b600'}},
+								{name: '根腐', itemStyle: {color: '#e6b600'}},
+								{name: '全蚀', itemStyle: {color: '#e6b600'}},
+								{name: '纹枯', itemStyle: {color: '#e6b600'}},
+								{name: '病毒', itemStyle: {color: '#e6b600'}}
+							]
+						}
+						// {
+						// 	name: '与党委的关系',
+						// 	symbolSize: 8,
+						// 	itemStyle: {color: '#e6b600'},
+						// 	children: [
+						// 		{name: '党建条款是否进入公司章程', itemStyle: {color: '#e6b600'}},
+						// 		{name: '党委与董事会成员是否双向进入、交叉任职', itemStyle: {color: '#e6b600'}},
+						// 		{name: '决策程序上是否党委会前置', itemStyle: {color: '#e6b600'}},
+						// 		{name: '是否披露党委会等党组织参与治理情况', itemStyle: {color: '#e6b600'}}
+						// 	]
+						// }
+					]
+				};
+				const treeData3 = {
+					name: '土壤',
+					symbolSize: 10,
+					itemStyle: {color: '#005eaa'},
+					label: {fontSize: 14},
+					children: [
+						{
+							name: '红壤系列',
+							symbolSize: 8,
+							itemStyle: {color: '#005eaa'},
+							children: [
+								{name: '砖红壤', itemStyle: {color: '#005eaa'}},
+								{name: '燥红土', itemStyle: {color: '#005eaa'}},
+								{name: '赤红壤', itemStyle: {color: '#005eaa'}}
+								// {name: '红壤和黄壤', itemStyle: {color: '#005eaa'}}
+							]
+						},
+						{
+							name: '棕壤系列',
+							symbolSize: 8,
+							itemStyle: {color: '#005eaa'},
+							children: [
+								{name: '黄棕壤', itemStyle: {color: '#005eaa'}},
+								{name: '棕壤', itemStyle: {color: '#005eaa'}},
+								{name: '暗棕壤', itemStyle: {color: '#005eaa'}},
+								{name: '漂灰土', itemStyle: {color: '#005eaa'}}
+							]
+						},
+						{
+							name: '褐土系列',
+							symbolSize: 8,
+							itemStyle: {color: '#005eaa'},
+							children: [
+								{name: '褐土', itemStyle: {color: '#005eaa'}},
+								{name: '黑垆土', itemStyle: {color: '#005eaa'}},
+								{name: '灰褐土', itemStyle: {color: '#005eaa'}}
+							]
+						},
+						{
+							name: '黑土系列',
+							symbolSize: 8,
+							itemStyle: {color: '#005eaa'},
+							children: [
+								{name: '灰黑土', itemStyle: {color: '#005eaa'}},
+								{name: '黑土', itemStyle: {color: '#005eaa'}},
+								{name: '白浆土', itemStyle: {color: '#005eaa'}},
+								{name: '黑钙土', itemStyle: {color: '#005eaa'}}
+							]
+						},
+						{
+							name: '栗钙土',
+							symbolSize: 8,
+							itemStyle: {color: '#005eaa'},
+							children: [
+								{name: '棕钙土', itemStyle: {color: '#005eaa'}},
+								{name: '灰钙土', itemStyle: {color: '#005eaa'}}
+								// {name: '是否上证180治理', itemStyle: {color: '#005eaa'}},
+								// {name: '负面新闻报道转载数', itemStyle: {color: '#005eaa'}}
+							]
+						}
+					]
+				};
+				const treeData4 = {
+					name: '气象',
+					symbolSize: 10,
+					itemStyle: {color: '#339ca8'},
+					label: {fontSize: 14},
+					children: [
+						{
+							name: '积温',
+							symbolSize: 8,
+							itemStyle: {color: '#339ca8'},
+							children: [
+								// {name: '年报披露日期距1月1日的天数', itemStyle: {color: '#339ca8'}},
+								// {name: '半年报披露日期距7月1日的天数', itemStyle: {color: '#339ca8'}},
+								{name: '生育期', itemStyle: {color: '#339ca8'}},
+								{name: '冬前', itemStyle: {color: '#339ca8'}},
+							]
+						},
+						{
+							name: '降雨量',
+							symbolSize: 8,
+							itemStyle: {color: '#339ca8'},
+							children: [
+								{name: '播种前', itemStyle: {color: '#339ca8'}},
+								{name: '越冬', itemStyle: {color: '#339ca8'}},
+								{name: '拔节期', itemStyle: {color: '#339ca8'}}
+							]
+						},
+						{
+							name: '温度',
+							symbolSize: 8,
+							itemStyle: {color: '#339ca8'},
+							children: [
+								{name: '越冬平均温度', itemStyle: {color: '#339ca8'}},
+								{name: '灌溉期气温', itemStyle: {color: '#339ca8'}},
+								// {name: '是否披露内部控制缺陷', itemStyle: {color: '#339ca8'}},
+								// {name: '是否有效实施内部控制缺陷整改', itemStyle: {color: '#339ca8'}}
+							]
+						},
+						{
+							name: '其他',
+							itemStyle: {color: '#339ca8'},
+							symbolSize: 8,
+							children: [
+								{name: '光照期', itemStyle: {color: '#339ca8'}},
+								{name: '春化期长度', itemStyle: {color: '#339ca8'}},
+								// {name: '否定意见', itemStyle: {color: '#339ca8'}}
+							]
+						}
+					]
+				};
+				const treeData5 = {
+					name: '栽培管理',
+					symbolSize: 10,
+					itemStyle: {color: '#7760f6'},
+					label: {fontSize: 14},
+					children: [
+						{
+							name: '水肥运筹',
+							symbolSize: 8,
+							itemStyle: {color: '#7760f6'},
+							children: [
+								{name: '灌溉', itemStyle: {color: '#7760f6'}},
+								{name: '施肥', itemStyle: {color: '#7760f6'}},
+								{name: '生育期管理', itemStyle: {color: '#7760f6'}},
+								{name: '措施管理', itemStyle: {color: '#7760f6'}},
+								// {name: '董事增持次数', itemStyle: {color: '#7760f6'}},
+								// {name: '董事减持次数', itemStyle: {color: '#7760f6'}}
+							]
+						},
+						{
+							name: '品种选择',
+							symbolSize: 8,
+							itemStyle: {color: '#7760f6'},
+							children: [
+								{name: '地力', itemStyle: {color: '#7760f6'}},
+								{name: '气候', itemStyle: {color: '#7760f6'}},
+								{name: '地理位置', itemStyle: {color: '#7760f6'}},
+								{name: '土质', itemStyle: {color: '#7760f6'}}
+							]
+						},
+						{
+							name: '施肥决策',
+							symbolSize: 8,
+							itemStyle: {color: '#7760f6'},
+							children: [
+								{name: '目标产量', itemStyle: {color: '#7760f6'}},
+								{name: '其他', itemStyle: {color: '#7760f6'}},
+								// {name: '赔偿金额', itemStyle: {color: '#7760f6'}}
+							]
+						}
+					]
+				};
+				const treeData = {
+					name: '小麦',
+					symbolSize: 12,
+					label: {fontSize: 16},
+					children: [
+						treeData1,
+						treeData2,
+						treeData3,
+						treeData4,
+						treeData5
+					]
+				};
+				const treeChartOpt = {
+					title: {
+						text: "小麦知识库",
+						subtext: "小麦智慧生产大数据平台",
+						textStyle: {
+							color: "#fff"
+						},
+						subtextStyle: {
+							fontSize: 12
+						},
+						left: 15,
+						top: 15
+					},
+					series: [
+					    {
+					    	name: '小麦',
+					    	type: 'tree',
+					    	left: '5%',
+					    	right: '20%',
+					    	top: '1%',
+							bottom: '5%',
+					    	orient: 'LR', //方向
+					    	initialTreeDepth: 0, //深度
+					    	symbol: 'circle',
+					    	itemStyle: {
+					    		color: '#ab2042',
+					    		borderColor: '#9aa8d4'
+					    	},
+					    	lineStyle: {
+					    		width: 1,
+					    		curveness: .9
+					    	},
+					    	label: {
+					    		color: '#9aa8d4',
+					    		position: 'bottom'
+					    	},
+					    	leaves: {
+					    		label: {
+					    			position: 'right'
+					    		}
+					    	},
+					    	data: [treeData]
+					    }
+				    ]
+				};
+				treeChart.setOption(treeChartOpt);
+				
+				//动态逐层级显示
+				let deep = 1;
+				let intervalId = window.setInterval(function() {
+					treeChart.setOption({
+						series: [{
+							name: '小麦',
+							initialTreeDepth: deep++
+						}]
+					});
+                    var container = document.getElementById('treeChart');
+                    var allNode=0;
+                    var nodes=treeChart._chartsViews[0]._data._graphicEls;
+                    for(var i=0,count =nodes.length;i<count;i++){
+                        var node=nodes[i];
+                        if(node===undefined)
+                            continue;
+                        allNode++;
+                    }
+                    var height=window.innerHeight;
+                    var currentHeight=15*allNode;
+                    var newWidth=Math.max(currentHeight,height);
+                    container.style.width = window.innerWidth + 'px';
+                    container.style.height = newWidth + 'px';
+                    treeChart.resize();
+					if(deep > 3) {
+						window.clearInterval(intervalId);
+					}
+				}, 1000);
+
+				//浏览器窗口发生变化时，重置报表大小
+				$(window).resize(function() {
+					treeChart.resize();
+				});
+
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,146 @@
+[
+	{
+		"code": "A",
+		"industry": "郑州市",
+		"alias": "郑州市",
+		"sh_stock": 15,
+		"sz_stock": 26,
+		"stock": 79.74
+	},
+	{
+		"code": "B",
+		"industry": "开封市",
+		"alias": "开封市",
+		"sh_stock": 51,
+		"sz_stock": 26,
+		"stock": 189.54
+	},
+	{
+		"code": "C",
+		"industry": "洛阳市",
+		"alias": "洛阳市",
+		"sh_stock": 828,
+		"sz_stock": 1471,
+		"stock": 119.54
+	},
+	{
+		"code": "D",
+		"industry": "平顶山市",
+		"alias": "平顶山市",
+		"sh_stock": 66,
+		"sz_stock": 47,
+		"stock": 115.14
+	},
+	{
+		"code": "E",
+		"industry": "安阳市",
+		"alias": "安阳市",
+		"sh_stock": 50,
+		"sz_stock": 49,
+		"stock": 208.47
+	},
+	{
+		"code": "F",
+		"industry": "鹤壁市",
+		"alias": "鹤壁市",
+		"sh_stock": 103,
+		"sz_stock": 68,
+		"stock": 65.35
+	},
+	{
+		"code": "G",
+		"industry": "新乡市",
+		"alias": "新乡市",
+		"sh_stock": 73,
+		"sz_stock": 34,
+		"stock": 270.11
+	},
+	{
+		"code": "H",
+		"industry": "焦作市",
+		"alias": "焦作市",
+		"sh_stock": 4,
+		"sz_stock": 7,
+		"stock": 114.89
+	},
+	{
+		"code": "I",
+		"industry": "濮阳市",
+		"alias": "濮阳市",
+		"sh_stock": 60,
+		"sz_stock": 204,
+		"stock": 165.34
+	},
+	{
+		"code": "J",
+		"industry": "许昌市",
+		"alias": "许昌市",
+		"sh_stock": 64,
+		"sz_stock": 27,
+		"stock": 166.52
+	},
+	{
+		"code": "K",
+		"industry": "漯河市",
+		"alias": "漯河市",
+		"sh_stock": 74,
+		"sz_stock": 63,
+		"stock": 106.25
+	},
+	{
+		"code": "L",
+		"industry": "三门峡市",
+		"alias": "三门峡市",
+		"sh_stock": 17,
+		"sz_stock": 36,
+		"stock": 34.15
+	},
+	{
+		"code": "M",
+		"industry": "南阳市",
+		"alias": "南阳市",
+		"sh_stock": 20,
+		"sz_stock": 29,
+		"stock": 415.41
+	},
+	{
+		"code": "N",
+		"industry": "商丘市",
+		"alias": "商丘市",
+		"sh_stock": 19,
+		"sz_stock": 31,
+		"stock": 434.81
+	},
+	{
+		"code": "O",
+		"industry": "信阳市",
+		"alias": "信阳市",
+		"sh_stock": 0,
+		"sz_stock": 1,
+		"stock": 147.34
+	},
+	{
+		"code": "P",
+		"industry": "周口市",
+		"alias": "周口市",
+		"sh_stock": 2,
+		"sz_stock": 1,
+		"stock": 544.06
+	},
+	{
+		"code": "Q",
+		"industry": "驻马店市",
+		"alias": "驻马店市",
+		"sh_stock": 3,
+		"sz_stock": 7,
+		"stock": 506.79
+	},
+	{
+		"code": "R",
+		"industry": "济源市",
+		"alias": "济源市",
+		"sh_stock": 26,
+		"sz_stock": 32,
+		"stock": 12.03
+	}
+]

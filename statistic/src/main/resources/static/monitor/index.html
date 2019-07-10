@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <title>小麦灾害预警监测</title>
+    <link rel="stylesheet" href="../assets/monitor/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../assets/monitor/css/app.css" />
+    <link rel="stylesheet" href="../assets/monitor/css/guangyun.css" />
+    <link rel="stylesheet" href="../assets/monitor/css/map.css">
+    <link rel="stylesheet" type="text/css" href="../assets/style.css" />
+    <!-- 时期 -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <style>
+        .notice {
+            width: 100%; /*单行显示，超出隐藏*/
+            height: 35px; /*固定公告栏显示区域的高度*/
+            /* padding: 0 30px; */
+            /* background-color: #b3effe; */
+            overflow: hidden;
+        }
+
+        .notice ul {
+            padding-left: 0px;
+        }
+
+        .notice ul li {
+            list-style: none;
+            line-height: 35px;
+            /*以下为了单行显示，超出隐藏*/
+            display: block;
+            text-align: left;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        #main {
+            width: 100%;
+            height: 92%;
+            /* margin: auto;
+            border: 2px solid green; */
+        }
+        #maintl {
+			width: 335px;
+            height: 5.5%;
+            padding: 5px 0px;
+            position: fixed;
+            top: 89.5%;
+            left: 2%;
+            z-index: 10;
+            background-color: rgba(64,131,214,0.6);
+            border-radius: 10px;
+            -webkit-transition: width 1s;
+        }
+        #ddd{
+            float: right;
+            width: 310px;
+            overflow: hidden;
+            -webkit-transition: width 1s;
+        }
+
+        #maintl span{
+        	color: #fff;
+            display: inline-block;
+        }
+        .img_2{
+        	width: 40px;
+        	height: 45px;
+            display: inline-block;
+        }
+        .img_3{
+            width: 34px;
+            height: 43px;
+            margin-left: 3px;
+            margin-right: 3px;
+            display: inline-block;
+        }
+        #c {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top:23px;
+        }
+        .s {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            float: left;
+            -webkit-transition: all 0.2s;
+            -moz-transition: all 0.2s;
+        }
+        .s:nth-child(1) {
+            background: #fa0303;
+            -webkit-animation: r0 2s 0s ease-out infinite;
+            -moz-animation: r0 2s 0s ease-out infinite;
+        }
+        @keyframes r0 {
+            0% {
+                box-shadow: 0 0 8px 6px rgba(250, 3, 3, 0.7), 0 0 0px 0px rgba(255,255,255,0.1), 0 0 0px 0px rgba(250, 3, 3, 0.7);
+            }
+            10% {
+                box-shadow: 0 0 8px 6px #fa0303, 0 0 12px 10px rgba(255,255,255,0.1), 0 0 12px 14px #fa0303;
+            }
+            100% {
+                box-shadow: 0 0 8px 6px rgba(250, 3, 3, 0), 0 0 0px 40px rgba(255,255,255,0.1), 0 0 0px 40px rgba(250, 3, 3, 0);
+            }
+        }
+
+        .y {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            float: left;
+            -webkit-transition: all 0.2s;
+            -moz-transition: all 0.2s;
+        }
+        .y:nth-child(1) {
+            background: #f78a48;
+            -webkit-animation: r2 2s 0s ease-out infinite;
+            -moz-animation: r2 2s 0s ease-out infinite;
+        }
+        @keyframes r2 {
+            0% {
+                box-shadow: 0 0 8px 6px rgba(247, 138, 72, 0.7), 0 0 0px 0px rgba(255,255,255,0.1), 0 0 0px 0px rgba(247, 138, 72, 0.7);
+            }
+            10% {
+                box-shadow: 0 0 8px 6px #f78a48, 0 0 12px 10px rgba(255,255,255,0.1), 0 0 12px 14px #f78a48;
+            }
+            100% {
+                box-shadow: 0 0 8px 6px rgba(247, 138, 72, 0), 0 0 0px 40px rgba(255,255,255,0.1), 0 0 0px 40px rgba(247, 138, 72, 0);
+            }
+        }
+    
+               
+        .x {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            float: left;
+            -webkit-transition: all 0.2s;
+            -moz-transition: all 0.2s;
+        }
+        .x:nth-child(1) {
+            background: #031D94;
+            -webkit-animation: r1 2s 0s ease-out infinite;
+            -moz-animation: r1 2s 0s ease-out infinite;
+        }
+        @keyframes r1 {
+            0% {
+                box-shadow: 0 0 8px 6px rgba(3, 29, 148, 0.7), 0 0 0px 0px rgba(255,255,255,0.1), 0 0 0px 0px rgba(3, 29, 148, 0.7);
+            }
+            10% {
+                box-shadow: 0 0 8px 6px #031D94, 0 0 12px 10px rgba(255,255,255,0.1), 0 0 12px 14px #031D94;
+            }
+            100% {
+                box-shadow: 0 0 8px 6px rgba(3, 29, 148, 0.4), 0 0 0px 40px rgba(255,255,255,0.1), 0 0 0px 40px rgba(3, 29, 148, 0.4);
+            }
+        }
+
+    </style>
+</head>
+
+<body class="bg02">
+    <div class="top ">
+        <div class="left nav ">
+            <div class="index">
+                <a href="../index.html"><img src="../assets/platform/images/index.png" alt=""></a>
+            </div>
+            <ul>
+                <li class="">
+                    <img src="../assets/platform/images/border.jpg" alt="边框">
+                    <a href="../yield/index.html">产量监测</a>
+                    <img src="../assets/platform/images/border2.jpg" alt="边框">
+                </li>
+                <li>
+                    <img src="../assets/platform/images/border.jpg" alt="边框">
+                    <a href="index.html">灾害预警</a>
+                    <img src="../assets/platform/images/border2.jpg" alt="边框">
+                </li>
+            </ul>
+        </div>
+        <div class="title">
+            小麦灾害预警监测
+        </div>
+        <div class="right nav">
+            <ul>
+                <li class="">
+                    <img src="../assets/platform/images/border.jpg" alt="边框">
+                    <a href="../weather/index.html">物联网</a>
+                    <img src="../assets/platform/images/border2.jpg" alt="边框">
+                </li>
+                <li>
+                    <img src="../assets/platform/images/border.jpg" alt="边框">
+                    <a href="../repository/index.html">知识库</a>
+                    <img src="../assets/platform/images/border2.jpg" alt="边框">
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="img_1">
+        <img src="../assets/monitor/images/head_1.gif" alt="">
+    </div>
+    <div class="wrapper">
+        <div class="container-fluid">
+            <div class="row fill-h">
+                <div class="col-lg-7 fill-h">
+                    <div class="xpanel-wrapper xpanel-wrapper-1">
+                        <div class="xpanel">
+                            <div class="inform">
+                                <img src="../assets/monitor/images/inform.png" alt="">
+                                <div class="notice">
+                                    <ul>
+                                        <!--<li><span>警告：原阳小吴庄农业物联网监测站检测出寒霜冻害！</span></li>
+                                    <li><span>警告：河南安阳县瓦店2农业物联网监控站检测出干热风灾害！</span></li>
+                                    &lt;!&ndash;<li><span>警告：郑州市金水区小麦监测站检测出冻害现象！</span></li>
+                                    <li><span>警告：漯河市汝阳县小麦监测站检测出冻害现象！</span></li>
+                                    <li><span>警告：洛阳市汝阳县小麦监测站检测出冻害现象！</span></li>&ndash;&gt;-->
+                                    </ul>
+                                </div>
+                                <!-- 日期 -->
+                                <div class="row" style="width: 25%;margin-right:0;margin-top: 4px;z-index:100">
+                                    <div class="col-sm-12" style="height: 38px">
+                                        <div class="form-group">
+                                            <!--指定 date标记-->
+                                            <div class='input-group date' id='datetimepicker1' style="opacity: 0.8">
+                                                <input type='text' onblur="changeDate(this);" class="form-control" placeholder="请输入日期" />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar" style="margin-left: 1px;"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="fill-h" id="container"></div> -->
+                            <div id='main'></div>
+                            <!--图例-->
+                            <div id='maintl'>
+                                <img src="../assets/monitor/images/left.png" id="img1" style="height: 70%;width: 20px;margin: 7px 0;" alt="">
+								<div id="ddd">
+                                    <div style="width: 310px;">
+                                        <img class="img_2" src="../assets/monitor/images/blue.png" alt=""/>
+                                        <span>晚霜冻害</span>
+                                        <img class="img_2" src="../assets/monitor/images/red.png" alt=""/>
+                                        <span>干热风</span>
+                                        <img class="img_3" src="../assets/monitor/images/yellow.png" alt=""/>
+                                        <span>长势图</span>
+                                    </div>
+								</div>
+                                <!--控制图例收缩与展开-->
+                                <script>
+                                    var img1 = document.getElementById("img1");
+                                    var ddd = document.getElementById("ddd");
+                                    var maintl = document.getElementById("maintl");
+                                    var aaaa = 0;
+                                    img1.onclick=function(){
+                                        if(aaaa == 0){
+                                            aaaa = 1;
+                                            img1.src = "../assets/monitor/images/right.png";
+                                            ddd.style.width = "0px";
+                                            maintl.style.width = "25px";
+                                        }else {
+                                            aaaa = 0;
+                                            img1.src = "../assets/monitor/images/left.png";
+                                            maintl.style.width = "335px";
+                                            setTimeout(ddd111(),"2000");
+                                        }
+                                        function ddd111() {
+                                            ddd.style.width = "310px";
+                                        }
+                                        }
+                                </script>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 fill-h">
+                    <div class="xpanel-wrapper xpanel-wrapper-2">
+                        <div class="xpanel">
+                            <div class="fill-h" id="coordChart"></div>
+                        </div>
+                    </div>
+                    <div class="xpanel-wrapper xpanel-wrapper-2" style="">
+                        <div class="xpanel">
+                            <div class="fill-h" id="heatmapChart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- 加载plugins方法：在src后边加参数名，以"，"隔开 -->
+    <script type="text/javascript" src='https://webapi.amap.com/maps?v=1.4.14&key=8d3db83c0aa5ea0202622aa204fe2f38'></script>
+    <!-- UI组件库 1.0 -->
+    <script src="https://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
+    <!-- <script type="text/javascript" src="./echarts.all.js"></script> -->
+    <script src="https://cdn.bootcss.com/echarts/4.1.0-rc.1/echarts.min.js"></script>
+    <!-- <script type="text/javascript" src="js/echarts-3.8.5.min.js"></script> -->
+    <script src="../assets/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="../assets/echarts-bmap.js"></script>
+    <script src="../assets/monitor/js/index.js"></script>
+    <!-- <script src="js/map.js"></script> -->
+    <script type="text/javascript" th:inline="none">
+    $(function() {
+
+
+
+        // /*************** 笛卡尔坐标系上的热力图 **************/
+        //     //初始化echarts实例
+        // const coordChart = echarts.init(document.getElementById("coordChart"));
+        // //数据
+        // const hours = ['0a', '1a', '2a', '3a', '4a', '5a', '6a', '7a', '8a', '9a', '10a', '11a', '12p',
+        //     '1p', '2p', '3p', '4p', '5p', '6p', '7p', '8p', '9p', '10p', '11p'];
+        //
+        // //配置
+        // const coordOpt = {
+        //     tooltip: {
+        //         position: 'top'
+        //     },
+        //     grid: {
+        //         top: 0,
+        //         bottom: 25,
+        //         left: 100,
+        //         right: 10,
+        //     },
+        //     xAxis: {
+        //         type: 'category',
+        //         data: hours,
+        //         splitArea: {
+        //             show: true
+        //         }
+        //     },
+        //     yAxis: {
+        //         type: 'category',
+        //         splitArea: {
+        //             show: true
+        //         }
+        //     },
+        //     axisLabel: {
+        //         color: '#fff'
+        //     },
+        //     visualMap: {
+        //         min: 0,
+        //         max: 35,
+        //         calculable: true,
+        //         left: 'left',
+        //         bottom: 20,
+        //         itemWidth: 10,
+        //         itemHeight: 80,
+        //         textStyle: {
+        //             color: '#fff'
+        //         }
+        //     },
+        //     series: [{
+        //         name: 'Coord Heatmap',
+        //         type: 'heatmap',
+        //         label: {
+        //             normal: {
+        //                 show: true
+        //             }
+        //         },
+        //         itemStyle: {
+        //             emphasis: {
+        //                 shadowBlur: 10,
+        //                 shadowColor: 'rgba(0, 0, 0, 0.5)'
+        //             }
+        //         }
+        //     }]
+        // };
+        // //渲染图表
+        // coordChart.setOption(coordOpt)
+        // $.ajax({
+        //     // 请求类型
+        //     type:"GET",
+        //     async : true,
+        //     // 请求url
+        //     url:"/weather24d/week",
+        //     // 请求的数据类型
+        //     dataType:"json",
+        //     // 响应成功之后执行的回调函数
+        //     success: function(data){
+        //         const days = data.y;
+        //         var data2 = data.temperature;
+        //         //console.log("data2:",data2)
+        //         let coordData = data2.map(function (item) {
+        //             return [item[1], item[0], item[2] || '-'];
+        //         });
+        //         coordChart.setOption({
+        //             yAxis: {
+        //                 data: days
+        //             },
+        //             series: [{
+        //                 name: 'Coord Heatmap',
+        //                 data: coordData
+        //             }]
+        //         });
+        //     },
+        //     // 响应失败之后执行的回调函数
+        //     error:function(jqXHR){
+        //        alert("coordChart数据请求发生错误："+ jqXHR.status);
+        //     }
+        // });
+        // // $.getJSON('../assets/monitor/data/coord.json').done(function (data) {
+        // //     let coordData = data.map(function (item) {
+        // //         return [item[1], item[0], item[2] || '-'];
+        // //     });
+        // //     coordChart.setOption({
+        // //         series: [{
+        // //             name: 'Coord Heatmap',
+        // //             data: coordData
+        // //         }]
+        // //     });
+        // // });
+        //
+        //
+        //
+        // /******************* 热力图 **********************/
+        //     //初始化echarts实例
+        // const heatmapChart = echarts.init(document.getElementById("heatmapChart"));
+        // let hours1 = ['0a', '1a', '2a', '3a', '4a', '5a', '6a',
+        //     '7a', '8a', '9a', '10a', '11a',
+        //     '12p', '1p', '2p', '3p', '4p', '5p',
+        //     '6p', '7p', '8p', '9p', '10p', '11p'];
+        //
+        //
+        // // let data = [[0, 0, 0], [0, 1, 0], [0, 2, 0], [0, 3, 0], [0, 4, 0], [0, 5, 0], [0, 6, 0], [0, 7, 0], [0, 8, 0], [0, 9, 0], [0, 10, 0], [0, 11, 0], [0, 12, 0], [0, 13, 0], [0, 14, 0], [0, 15, 0], [0, 16, 0.2], [0, 17, 1.8], [0, 18, 1.9], [0, 19, 0.8], [0, 20, 2.0], [0, 21, 1.4], [0, 22, 0.1], [0, 23, 0],
+        // //     [1, 0, 0], [1, 1, 0], [1, 2, 0], [1, 3, 0], [1, 4, 0], [1, 5, 0], [1, 6, 0], [1, 7, 0], [1, 8, 0], [1, 9, 0], [1, 10, 0], [1, 11, 0], [1, 12, 0], [1, 13, 0], [1, 14, 1.7], [1, 15, 2.3], [1, 16, 0.5], [1, 17, 0], [1, 18, 0.5], [1, 19, 1.2], [1, 20, 2.2], [1, 21, 0.6], [1, 22, 0.3], [1, 23, 0],
+        // //     [2, 0, 0], [2, 1, 0], [2, 2, 0], [2, 3, 0.6], [2, 4, 1.5], [2, 5, 1.2], [2, 6, 0.3], [2, 7, 0], [2, 8, 0], [2, 9, 0], [2, 10, 0.1], [2, 11, 0], [2, 12, 0.1], [2, 13, 0], [2, 14, 0], [2, 15, 0], [2, 16, 0], [2, 17, 0], [2, 18, 0], [2, 19, 0], [2, 20, 0], [2, 21, 0], [2, 22, 0], [2, 23, 0],
+        // //     [3, 0, 0.5], [3, 1, 0.9], [3, 2, 0], [3, 3, 1.3], [3, 4, 0.9], [3, 5, 0.6], [3, 6, 0.9], [3, 7, 1.6], [3, 8, 0], [3, 9, 0.5], [3, 10, 0], [3, 11, 0], [3, 12, 0], [3, 13, 0], [3, 14, 0], [3, 15, 0], [3, 16, 0], [3, 17, 0], [3, 18, 0], [3, 19, 0], [3, 20, 0], [3, 21, 0], [3, 22, 0], [3, 23, 0],
+        // //     [4, 0, 0], [4, 1, 0], [4, 2, 0], [4, 3, 0], [4, 4, 0], [4, 5, 0], [4, 6, 0], [4, 7, 0], [4, 8, 0], [4, 9, 0], [4, 10, 0], [4, 11, 0], [4, 12, 0], [4, 13, 0.6], [4, 14, 1], [4, 15, 1.6], [4, 16, 0.5], [4, 17, 0.8], [4, 18, 0.1], [4, 19, 0], [4, 20, 0], [4, 21, 0], [4, 22, 0], [4, 23, 0],
+        // //     [5, 0, 0], [5, 1, 0], [5, 2, 0], [5, 3, 0], [5, 4, 0], [5, 5, 0], [5, 6, 0], [5, 7, 0.1], [5, 8, 0], [5, 9, 0.1], [5, 10, 0.2], [5, 11, 0.4], [5, 12, 0.6], [5, 13, 0.4], [5, 14, 0.1], [5, 15, 1.8], [5, 16, 1.7], [5, 17, 0], [5, 18, 0], [5, 19, 0], [5, 20, 0], [5, 21, 0], [5, 22, 0], [5, 23, 0],
+        // //     [6, 0, 0], [6, 1, 0], [6, 2, 0], [6, 3, 0], [6, 4, 0], [6, 5, 0], [6, 6, 0], [6, 7, 0], [6, 8, 0], [6, 9, 0], [6, 10, 0], [6, 11, 0], [6, 12, 0], [6, 13, 0], [6, 14, 0.2], [6, 15, 0.4], [6, 16, 0.8], [6, 17, 1.7], [6, 18, 0.6], [6, 19, 0.1], [6, 20, 0], [6, 21, 0], [6, 22, 0], [6, 23, 0]];
+        // var  data1 = [];
+        // var days2 = [];
+        //
+        // $.ajax({
+        //     // 请求类型
+        //     type:"GET",
+        //     async : true,
+        //     // 请求url
+        //     url:"/weather24d/rain",
+        //     // 请求的数据类型
+        //     dataType:"json",
+        //     // 响应成功之后执行的回调函数
+        //     success: function(result) {
+        //         days2 = result.y;
+        //         data1 = result.rain;
+        //         option = {
+        //             tooltip: {
+        //                 position: 'top'
+        //             },
+        //             title: [],
+        //             singleAxis: [],
+        //             series: [],
+        //             textStyle: {
+        //                 color: '#fff'
+        //             }
+        //         };
+        //         var c = days2.length;
+        //             //console.log("data1:",data1);
+        //         //console.log("data1.y:",days2);
+        //         echarts.util.each(days2, function (day, idx) {
+        //             option.title.push({
+        //                 textBaseline: 'middle',
+        //                 top: (idx + 0.5) * 100 / c + '%',
+        //                 text: day,
+        //                 textStyle: {
+        //                     color: '#1D81B6',
+        //                     fontSize: 14
+        //                 },
+        //
+        //             });
+        //             option.singleAxis.push({
+        //                 left: 75,
+        //                 type: 'category',
+        //                 boundaryGap: false,
+        //                 data: hours1,
+        //                 bottom: (idx * 100 / c + 5) + '%',
+        //                 height: (100 / c - 10) + '%',
+        //                 axisLabel: {
+        //                     interval: 1,
+        //                 },
+        //                 /* lineStyle{
+        //                     color:'#fff'
+        //                 }  */
+        //             });
+        //
+        //             option.series.push({
+        //                 singleAxisIndex: idx,
+        //                 coordinateSystem: 'singleAxis',
+        //                 type: 'scatter',
+        //                 data: [],
+        //                 symbolSize: function (dataItem) {
+        //                     return dataItem[1] * 1;
+        //                 }
+        //             });
+        //         });
+        //
+        //         echarts.util.each(data1, function (dataItem) {
+        //             option.series[dataItem[0]].data.push([dataItem[1], dataItem[2]]);
+        //         });
+        //
+        //
+        //         heatmapChart.setOption(option);
+        //     },
+        //     // 响应失败之后执行的回调函数
+        //     error:function(jqXHR){
+        //         alert("heatmapData数据请求发生错误："+ jqXHR.status);
+        //     }
+        // });
+
+
+
+
+        /********** 窗口大小改变时，重置报表大小 ********************/
+        window.onresize = function() {
+            //bmapChart.resize();
+            heatmapChart.resize();
+            coordChart.resize();
+        };
+    });
+
+
+    function noticeUp(obj, top, time) {
+        $(obj).animate({
+            marginTop: top
+        }, time, function() {
+            $(this).css({ marginTop: "0" }).find(":first").appendTo(this);
+        })
+    }
+
+    let timer = setInterval("noticeUp('.notice ul','-35px',500)", 2500);
+
+    $(function() {
+        $(".notice").hover(function() {
+            clearInterval(timer);
+        }, function() {
+            timer = setInterval("noticeUp('.notice ul','-35px',500)", 2500);
+        })
+    })
+    </script>
+    <script type="text/javascript">
+    $(function() {
+        $('#datetimepicker1').datetimepicker({
+            format: 'YYYY-MM-DD',
+            locale: moment.locale('zh-cn')
+        });
+
+    });
+
+    function changeDate(e) {
+        //console.log(e.value);
+        var timeStr = e.value;
+        $.ajax({
+            // 请求类型
+            type: "POST",
+            // 请求url
+            url: "/forecast/getToday",
+            // 请求的数据类型
+            dataType: "json",
+            data: { forecasTime: timeStr },
+            // 响应成功之后执行的回调函数
+            success: function(data) {
+                map.remove(markers);
+                map.remove(markers2);
+                AMapUI.loadUI(['overlay/AwesomeMarker'], function(AwesomeMarker) {
+                    var points = city["Stations"];
+                    for (var i = 0, len = points.length; i < len; i++) {
+                        var marker = new AwesomeMarker({
+                            //设置awesomeIcon
+                            awesomeIcon: "adjust",
+                            iconLabel: {
+                                style: {
+                                    color: '#333',
+                                    fontSize: '14px'
+                                }
+                            },
+                            /*"index": points[i]["Index"],*/
+                            iconStyle: 'orange',
+                            map: map,
+                            position: new AMap.LngLat(points[i]["Longitude"], points[i]["Latitude"]),
+                            title: points[i]["name"],
+                            namep: points[i]["namep"]
+                        });
+                        markers.push(marker);
+                        AMap.event.addListener(marker, 'click', function(e) {
+                            var marker = e.target;
+                            var cc = marker["B"]["namep"];
+                            // console.log(cc);
+                            content = "<img src=\"../assets/monitor/images/" + cc + ".png/\">";
+                            infoWindow = new AMap.InfoWindow({
+                                isCustom: true, //使用自定义窗体
+                                content: createInfoWindow(marker["B"]["title"], marker["B"]["index"], content),
+                                offset: new AMap.Pixel(16, -45)
+                            });
+
+                            infoWindow.open(map, e.target.getPosition());
+                        });
+                        //marker.emit('click',{target:marker});
+                    }
+                });
+                var points = data["data"];
+                var p = city["Stations"];
+                var deleteMarker = [];
+                $(".inform .notice ul").html();
+                for (var i = 0; i < points.length; i++) {
+                    var markerContent, index = points[i][1][6] - '0',
+                        hoverString = "";
+                    // 101180101
+                    if (points[i][3] == 0) continue;
+                    if (!(points[i][1][8] == 1 && points[i][1][7] == 0)) continue;
+                    if (points[i][1][5] != 0) {
+                        index += 10;
+                    }
+                    index -= 1;
+                    // 根据灾害的级别不同设置不同的样式
+                    var d = new Date(points[i][4]);
+                    hoverString = "警告[" + d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate() + "-" + d.getHours() + "-" + d.getMinutes() + "-" + d.getSeconds() + "]"
+                    // 根据灾害的级别不同设置不同的样式
+                    hoverString += "预计<b>" + p[index]["name"] + "</b>未来将会发生";
+                    // 根据灾害种类不同设置不同的样式
+                    if (points[i][2] == 2) {
+                        if (points[i][3] == 1) {
+                            markerContent = "<div id='c'><div class='y'></div></div>";
+                            hoverString += "轻度";
+                        } else if (points[i][3] == 2) {
+                            markerContent = "<div id='c'><div class='s'></div></div>";
+                            hoverString += "重度";
+                        }
+                        hoverString += "热干风";
+                    } else if (points[i][2] == 1) {
+                        if (points[i][3] == 1) {
+                            markerContent = "<div id='c'><div class='y'></div></div>";
+                            hoverString += "轻度";
+                        } else if (points[i][3] == 2) {
+                            markerContent = "<div id='c'><div class='s'></div></div>";
+                            hoverString += "重度";
+                        }
+                        hoverString += "晚霜冻害";
+                    }
+                    hoverString += "灾害,请注意防范!";
+                    $(".inform .notice ul").append("<li><span>" + hoverString + "</span></li>");
+                    // Title=hoverString;
+                    var marker = new AMap.Marker({
+                        map: map,
+                        position: new AMap.LngLat(p[index]["Longitude"], p[index]["Latitude"]),
+                        title: hoverString,
+                        content: markerContent
+                    });
+
+                    markers2.push(marker);
+                    /*console.log(markers);
+                    console.log(index);
+                    console.log(markers[index]);*/
+                    if (markers[index] != null) {
+                        markers[index].setMap(null);
+                    }
+                }
+                // 添加新的marker
+                AMapUI.loadUI(['overlay/AwesomeMarker'], function(AwesomeMarker) {
+                    for (var i = 0, len = points.length; i < len; i++) {
+                        var index = points[i][1][6] - '0',
+                            imgSrc;
+                        // console.log("点击显示内容"+index);
+                        if (points[i][3] == 0) continue;
+                        if (!(points[i][1][8] == 1 && points[i][1][7] == 0)) continue;
+                        if (points[i][1][5] != 0) {
+                            index += 10;
+                        }
+                        index -= 1;
+
+                        if (points[i][2] == 1) {
+                            imgSrc = "../assets/monitor/images/blue.png";
+                        } else {
+                            imgSrc = "../assets/monitor/images/red.png";
+                        }
+                        if (points[i][3] == 1) {
+                            forecast = "轻度热干风灾害"
+                        } else {
+                            forecast = "重度热干风灾害"
+                        }
+                        // console.log(points[i]["name"]);
+                        var marker = new AwesomeMarker({
+                            iconLabel: {
+                                style: {
+                                    color: '#333',
+                                    fontSize: '14px',
+                                }
+                            },
+                            iconStyle: {
+                                src: imgSrc,
+                                style: {
+                                    width: '37px',
+                                    height: '43px'
+                                }
+                            },
+                            map: map,
+                            position: new AMap.LngLat(p[index]["Longitude"], p[index]["Latitude"]),
+                            offset: new AMap.Pixel(-17, -39),
+                            title: p[index]["name"] + points[i][1],
+                            city: points[i][1],
+                            chyj: forecast
+                        });
+                        markers.push(marker);
+                        AMap.event.addListener(marker, 'click', function(e) {
+                            var marker = e.target;
+                            //console.log(marker["B"]["city"]);
+                            var cityID = marker["B"]["city"];
+                            $.ajax({
+                                url: "/weather24d/week",
+                                type: "post",
+                                //注意序列化的值一定要放在最前面,并且不需要头部变量,不然获取的值得格式会有问题
+                                data: cityID,
+                                dataType: "json",
+                                success: function(data) {
+                                    //console.log(data);
+                                    const days = data.y;
+                                    var data2 = data.temperature;
+                                    //console.log("data2:",data2)
+                                    let coordData = data2.map(function(item) {
+                                        return [item[1], item[0], item[2] || '-'];
+                                    });
+                                    coordChart.setOption({
+                                        yAxis: {
+                                            data: days
+                                        },
+                                        series: [{
+                                            name: 'Coord Heatmap',
+                                            data: coordData
+                                        }]
+                                    });
+                                }
+                            });
+                            $.ajax({
+                                // 请求类型
+                                type: "POST",
+                                async: true,
+                                // 请求url
+                                url: "/weather24d/rain",
+                                data: cityID,
+                                // 请求的数据类型
+                                dataType: "json",
+                                // 响应成功之后执行的回调函数
+                                success: function(result) {
+                                    days2 = result.y;
+                                    data1 = result.rain;
+                                    option = {
+                                        tooltip: {
+                                            position: 'top'
+                                        },
+                                        title: [],
+                                        singleAxis: [],
+                                        series: [],
+                                        textStyle: {
+                                            color: '#fff'
+                                        }
+                                    };
+                                    var c = days2.length;
+                                    //console.log("data1:",data1);
+                                    //console.log("data1.y:",days2);
+                                    echarts.util.each(days2, function(day, idx) {
+                                        option.title.push({
+                                            textBaseline: 'middle',
+                                            top: (idx + 0.5) * 100 / c + '%',
+                                            text: day,
+                                            textStyle: {
+                                                color: '#1D81B6',
+                                                fontSize: 14
+                                            },
+
+                                        });
+                                        option.singleAxis.push({
+                                            left: 75,
+                                            type: 'category',
+                                            boundaryGap: false,
+                                            data: hours1,
+                                            bottom: (idx * 100 / c + 5) + '%',
+                                            height: (100 / c - 10) + '%',
+                                            axisLabel: {
+                                                interval: 1,
+                                            },
+                                            /* lineStyle{
+                                                color:'#fff'
+                                            }  */
+                                        });
+
+                                        option.series.push({
+                                            singleAxisIndex: idx,
+                                            coordinateSystem: 'singleAxis',
+                                            type: 'scatter',
+                                            data: [],
+                                            symbolSize: function(dataItem) {
+                                                return dataItem[1] * 1;
+                                            }
+                                        });
+                                    });
+
+                                    echarts.util.each(data1, function(dataItem) {
+                                        option.series[dataItem[0]].data.push([dataItem[1], dataItem[2]]);
+                                    });
+                                    heatmapChart.setOption(option);
+                                },
+                                // 响应失败之后执行的回调函数
+                                error: function(jqXHR) {
+                                    //alert("heatmapData数据请求发生错误：" + jqXHR.status);
+                                }
+                            });
+                            infoWindow = new AMap.InfoWindow({
+                                isCustom: true, //使用自定义窗体
+                                content: openwindow(marker["B"]["title"], marker["B"]["index"], content1.join(""), marker["B"]["chyj"]),
+                                offset: new AMap.Pixel(16, -45)
+                            });
+                            infoWindow.open(map, e.target.getPosition());
+                        });
+                    }
+                });
+            },
+            // 响应失败之后执行的回调函数
+            error: function(jqXHR) {
+                console.log("staring error!");
+                //alert("发生错误：" + jqXHR.status);
+            }
+        });
+    }
+    </script>
+    <script type="text/javascript">
+    var county_markers = [];
+
+    map.on('zoomchange', () => {
+                //console.log(map.getZoom());
+                let zoom = map.getZoom();
+                if (zoom >= 9) {
+                    map.remove(markers);
+                    map.remove(markers2);
+                } else if (zoom == 8) {
+                    //console.log(markers2.length);
+                    map.add(markers2);
+                    map.add(markers);
+                    //map.remove(markers2);
+                }
+                $.ajax({
+                            // 请求类型
+                            type: "POST",
+                            // 请求url
+                            url: "/forecast/getToday",
+                            // 请求的数据类型
+                            dataType: "json",
+                            data: { forecasTime: timeStr },
+                            // 响应成功之后执行的回调函数
+                            success: function(data) {
+                                    map.remove(markers);
+                                    map.remove(markers2);
+                                    AMapUI.loadUI(['overlay/AwesomeMarker'], function(AwesomeMarker) {
+                                        var points = city["Stations"];
+                                        for (var i = 0, len = points.length; i < len; i++) {
+                                            var marker = new AwesomeMarker({
+                                                //设置awesomeIcon
+                                                awesomeIcon: "adjust",
+                                                iconLabel: {
+                                                    style: {
+                                                        color: '#333',
+                                                        fontSize: '14px'
+                                                    }
+                                                },
+                                                /*"index": points[i]["Index"],*/
+                                                iconStyle: 'orange',
+                                                map: map,
+                                                position: new AMap.LngLat(points[i]["Longitude"], points[i]["Latitude"]),
+                                                title: points[i]["name"]
+                                            });
+                                            markers.push(marker);
+                                            AMap.event.addListener(marker, 'click', function(e) {
+                                                var marker = e.target;
+                                                infoWindow = new AMap.InfoWindow({
+                                                    isCustom: true, //使用自定义窗体
+                                                    content: createInfoWindow(marker["B"]["title"], marker["B"]["index"], content.join("")),
+                                                    offset: new AMap.Pixel(16, -45)
+                                                });
+
+                                                infoWindow.open(map, e.target.getPosition());
+                                            });
+                                            //marker.emit('click',{target:marker});
+                                        }
+                                    });
+                                    var points = data["data"];
+                                    var p = city["Stations"];
+                                    var deleteMarker = [];
+                                    $(".inform .notice ul").html();
+                                    for (var i = 0; i < points.length; i++) {
+                                        var markerContent, index = points[i][1][6] - '0',
+                                            hoverString = "";
+                                        // 101180101
+                                        if (points[i][3] == 0) continue;
+                                        if (!(points[i][1][8] == 1 && points[i][1][7] == 0)) continue;
+                                        if (points[i][1][5] != 0) {
+                                            index += 10;
+                                        }
+                                        index -= 1;
+                                        // 根据灾害的级别不同设置不同的样式
+                                        var d = new Date(points[i][4]);
+                                        hoverString = "警告[" + d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate() + "-" + d.getHours() + "-" + d.getMinutes() + "-" + d.getSeconds() + "]"
+                                        // 根据灾害的级别不同设置不同的样式
+                                        hoverString += "预计<b>" + p[index]["name"] + "</b>未来将会发生";
+                                        // 根据灾害种类不同设置不同的样式
+                                        if (points[i][2] == 2) {
+                                            if (points[i][3] == 1) {
+                                                markerContent = "<div id='c'><div class='y'></div></div>";
+                                                hoverString += "轻度";
+                                            } else if (points[i][3] == 2) {
+                                                markerContent = "<div id='c'><div class='s'></div></div>";
+                                                hoverString += "重度";
+                                            }
+                                            hoverString += "热干风";
+                                        } else if (points[i][2] == 1) {
+                                            if (points[i][3] == 1) {
+                                                markerContent = "<div id='c'><div class='y'></div></div>";
+                                                hoverString += "轻度";
+                                            } else if (points[i][3] == 2) {
+                                                markerContent = "<div id='c'><div class='s'></div></div>";
+                                                hoverString += "重度";
+                                            }
+                                            hoverString += "晚霜冻害";
+                                        }
+                                        hoverString += "灾害,请注意防范!";
+                                        $(".inform .notice ul").append("<li><span>" + hoverString + "</span></li>");
+                                        // Title=hoverString;
+                                        var marker = new AMap.Marker({
+                                            map: map,
+                                            position: new AMap.LngLat(p[index]["Longitude"], p[index]["Latitude"]),
+                                            title: hoverString,
+                                            content: markerContent
+                                        });
+
+                                        markers2.push(marker);
+                                        /*console.log(markers);
+                                        console.log(index);
+                                        console.log(markers[index]);*/
+                                        if (markers[index] != null) {
+                                            markers[index].setMap(null);
+                                        }
+                                    }
+                                    // 添加新的marker
+                                    AMapUI.loadUI(['overlay/AwesomeMarker'], function(AwesomeMarker) {
+                                                for (var i = 0, len = points.length; i < len; i++) {
+                                                    var index = points[i][1][6] - '0',
+                                                        imgSrc;
+                                                    // console.log("点击显示内容"+index);
+                                                    if (points[i][3] == 0) continue;
+                                                    if (!(points[i][1][8] == 1 && points[i][1][7] == 0)) continue;
+                                                    if (points[i][1][5] != 0) {
+                                                        index += 10;
+                                                    }
+                                                    index -= 1;
+
+                                                    if (points[i][2] == 1) {
+                                                        imgSrc = "../assets/monitor/images/blue.png";
+                                                    } else {
+                                                        imgSrc = "../assets/monitor/images/red.png";
+                                                    }
+                                                    if (points[i][3] == 1) {
+                                                        forecast = "轻度热干风灾害"
+                                                    } else {
+                                                        forecast = "重度热干风灾害"
+                                                    }
+                                                    // console.log(points[i]["name"]);
+                                                    var marker = new AwesomeMarker({
+                                                        iconLabel: {
+                                                            style: {
+                                                                color: '#333',
+                                                                fontSize: '14px',
+                                                            }
+                                                        },
+                                                        iconStyle: {
+                                                            src: imgSrc,
+                                                            style: {
+                                                                width: '37px',
+                                                                height: '43px'
+                                                            }
+                                                        },
+                                                        map: map,
+                                                        position: new AMap.LngLat(p[index]["Longitude"], p[index]["Latitude"]),
+                                                        offset: new AMap.Pixel(-17, -39),
+                                                        title: p[index]["name"] + points[i][1],
+                                                        city: points[i][1],
+                                                        chyj: forecast
+                                                    });
+                                                    markers.push(marker);
+                                                    AMap.event.addListener(marker, 'click', function(e) {
+                                                        var marker = e.target;
+                                                        //console.log(marker["B"]["city"]);
+                                                        var cityID = marker["B"]["city"];
+                                                        $.ajax({
+                                                            url: "/weather24d/week",
+                                                            type: "post",
+                                                            //注意序列化的值一定要放在最前面,并且不需要头部变量,不然获取的值得格式会有问题
+                                                            data: cityID,
+                                                            dataType: "json",
+                                                            success: function(data) {
+                                                                //console.log(data);
+                                                                const days = data.y;
+                                                                var data2 = data.temperature;
+                                                                //console.log("data2:",data2)
+                                                                let coordData = data2.map(function(item) {
+                                                                    return [item[1], item[0], item[2] || '-'];
+                                                                });
+                                                                coordChart.setOption({
+                                                                    yAxis: {
+                                                                        data: days
+                                                                    },
+                                                                    series: [{
+                                                                        name: 'Coord Heatmap',
+                                                                        data: coordData
+                                                                    }]
+                                                                });
+                                                            }
+                                                        });
+                                                    })
+    </script>
+</body>
+
+</html>

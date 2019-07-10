@@ -1,0 +1,92 @@
+[
+	{
+		"month": "周口市",
+		"sh_market_capitalization": 544.06,
+		"sh_transaction_amount": 507.15,
+		"sh_pe_ratio": 1.07,
+		"sz_market_capitalization": 0,
+		"sz_transaction_amount": 0,
+		"sz_pe_ratio": 0
+	},
+	{
+		"month": "驻马店",
+		"sh_market_capitalization": 506.79,
+		"sh_transaction_amount": 468.28,
+		"sh_pe_ratio": 1.08,
+		"sz_market_capitalization": 0,
+		"sz_transaction_amount": 0,
+		"sz_pe_ratio": 0
+	},
+	{
+		"month": "商丘市",
+		"sh_market_capitalization": 434.81,
+		"sh_transaction_amount": 424.97,
+		"sh_pe_ratio": 1.02,
+		"sz_market_capitalization": 0,
+		"sz_transaction_amount": 0,
+		"sz_pe_ratio": 0
+	},
+	{
+		"month": "南阳市",
+		"sh_market_capitalization": 415.41,
+		"sh_transaction_amount": 385.12,
+		"sh_pe_ratio": 1.07,
+		"sz_market_capitalization": 0,
+		"sz_transaction_amount": 0,
+		"sz_pe_ratio": 0
+	},
+	{
+		"month": "新乡市",
+		"sh_market_capitalization": 270.11,
+		"sh_transaction_amount": 248.96,
+		"sh_pe_ratio": 1.08,
+		"sz_market_capitalization": 0,
+		"sz_transaction_amount": 0,
+		"sz_pe_ratio": 0
+	},
+	{
+		"month": "安阳市",
+		"sh_market_capitalization": 208.47,
+		"sh_transaction_amount": 206.30,
+		"sh_pe_ratio": 1.01,
+		"sz_market_capitalization": 0,
+		"sz_transaction_amount": 0,
+		"sz_pe_ratio": 0
+	},
+	{
+		"month": "开封市",
+		"sh_market_capitalization": 189.54,
+		"sh_transaction_amount": 185.14,
+		"sh_pe_ratio": 1.02,
+		"sz_market_capitalization": 0,
+		"sz_transaction_amount": 0,
+		"sz_pe_ratio": 0
+	},
+	{
+		"month": "许昌市",
+		"sh_market_capitalization": 166.52,
+		"sh_transaction_amount": 157.48,
+		"sh_pe_ratio": 1.06,
+		"sz_market_capitalization": 0,
+		"sz_transaction_amount": 0,
+		"sz_pe_ratio": 0
+	},
+	{
+		"month": "濮阳市",
+		"sh_market_capitalization": 165.34,
+		"sh_transaction_amount": 154.79,
+		"sh_pe_ratio": 1.07,
+		"sz_market_capitalization": 0,
+		"sz_transaction_amount": 0,
+		"sz_pe_ratio": 0
+	},
+	{
+		"month": "洛阳市",
+		"sh_market_capitalization": 119.54,
+		"sh_transaction_amount": 114.32,
+		"sh_pe_ratio": 1.04,
+		"sz_market_capitalization": 0,
+		"sz_transaction_amount": 0,
+		"sz_pe_ratio": 0
+	}
+]

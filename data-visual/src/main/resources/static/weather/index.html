@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>气象实时监测</title>
+    <link rel="stylesheet" href="../assets/weather/css/index.css">
+    <link rel="stylesheet" href="../assets/weather/css/Annular_strip.css">
+    <link rel="stylesheet" type="text/css" href="../assets/weather/css/animate.min.css" />
+     <link rel="stylesheet" type="text/css" href="../assets/style.css" />
+</head>
+
+<body>
+<div class="top ">
+		<div class="left nav ">
+			<div class="index">
+				<a href="../index.html" ><img src="../assets/platform/images/index.png" alt=""></a>
+			</div>
+			<ul >
+				<li class="">
+					<img src="../assets/platform/images/border.jpg" alt="边框">
+					<a href="../yield/index.html">产量监测</a>
+					<img src="../assets/platform/images/border2.jpg" alt="边框">
+				</li>
+				<li>
+					<img src="../assets/platform/images/border.jpg" alt="边框">
+					<a href="../monitor/index.html">灾害预警</a>
+					<img src="../assets/platform/images/border2.jpg" alt="边框">
+				</li>
+			</ul>
+		</div>
+
+		<div class="title">
+			农业气象实时监测
+		</div>
+
+		<div class="right nav">
+			<ul >
+				<li class="">
+					<img src="../assets/platform/images/border.jpg" alt="边框">
+					<a href="">物联网</a>
+					<img src="../assets/platform/images/border2.jpg" alt="边框">
+				</li>
+				<li>
+					<img src="../assets/platform/images/border.jpg" alt="边框">
+					<a href="../repository/index.html">知识库</a>
+					<img src="../assets/platform/images/border2.jpg" alt="边框">
+				</li>
+			</ul>
+		</div>
+
+	
+
+	</div>
+	<div class="img_1">
+        <img src="../assets/weather/images/head_1.gif" alt="">
+    </div>
+    
+    
+    <!--top结束  -->
+<!--     <div class="head_1">河南省气象实时监测</div>
+    <div class="img_1">
+        <img src="img/head_1.gif" alt="">
+    </div>
+    <img class="img_2" src="img/head_2.png" alt=""> -->
+    
+    <div class="main">
+        <div class="main_left">
+            <div class="main_left_1">
+                <div class="main_left_2">
+                </div>
+            </div>
+            <div class="main_left1"><span>城市气温排行</span></div>
+            <div class="main_left_text1">
+              <ul>
+                <li>No.1 &nbsp &nbsp <span>郑州</span><div class="div1 container animated fadeInLeft"></div></li>
+                <li>No.2 &nbsp &nbsp <span>三门峡</span><div class="div2 container animated fadeInLeft"></div></li>
+                <li>No.3 &nbsp &nbsp <span>洛阳</span><div class="div3 container animated fadeInLeft"></div></li>
+                <li>No.4 &nbsp &nbsp <span>周口</span><div class="div4 container animated fadeInLeft"></div></li>
+                <li>No.5 &nbsp &nbsp <span>焦作</span><div class="div5 container animated fadeInLeft"></div></li>
+                <li>No.6 &nbsp &nbsp <span>信阳</span><div class="div6 container animated fadeInLeft"></div></li>
+                <li>No.7 &nbsp &nbsp <span>商丘</span><div class="div7 container animated fadeInLeft"></div></li>
+                <li>No.8 &nbsp &nbsp <span>新乡</span><div class="div8 container animated fadeInLeft"></div></li>
+                <li>No.9 &nbsp &nbsp <span>鹤壁</span><div class="div9 container animated fadeInLeft"></div></li>
+                <li>No.10 &nbsp &nbsp <span>濮阳</span><div class="div10 container animated fadeInLeft"></div></li>
+                <li>No.11 &nbsp &nbsp <span>安阳</span><div class="div11 container animated fadeInLeft"></div></li>
+                <li>No.12 &nbsp &nbsp <span>漯河</span><div class="div12 container animated fadeInLeft"></div></li>
+                <li>No.13 &nbsp &nbsp <span>驻马店</span><div class="div13 container animated fadeInLeft"></div></li>
+              </ul>
+            </div>
+        </div>
+        <div class="main_middle margin_lf">
+            <div class="main_middle_1">
+                <div class="main_middle_2">
+                </div>
+            </div>
+            <div id="main"> </div>
+            <script type="text/javascript" src="../assets/weather/js/jquery-3.3.1.min.js"></script>
+            <script type="text/javascript" src="../assets/weather/js/echarts.min.js"></script>
+            <script type="text/javascript" src="../assets/weather/js/henan.js"></script>
+            <script type="text/javascript" src="../assets/weather/js/echarts-theme-shine.js"></script>
+            <script type="text/javascript">
+            //获取地域分布数据
+            const mapChart = echarts.init(document.getElementById("main"), "shine");
+            const mapChartOpt = {
+                tooltip: {
+                    formatter: function(params) {
+                        const data = params.data;
+                        const suffix = '<span style="margin-left:5px;font-size:12px;">毫米/年</span>';
+                        return data.name + "<br />降雨量：" + data.value + suffix;
+                    }
+                },
+                visualMap: {
+                    type: "piecewise",
+                    splitNumber: 6,
+                    itemWidth: 10,
+                    itemHeight: 10,
+                    itemGap: 5,
+                    textGap: 5,
+                    textStyle: {
+                        fontSize: 10,
+                        color: "#b0c2f9"
+                    },
+                    min: 500,
+                    max: 1400,
+                    calculable: true,
+                    seriesIndex: [0]
+                },
+                geo: {
+                    map: "河南",
+                    roam: true, //开启鼠标缩放和漫游
+                    zoom: 1, //地图缩放级别
+                    selectedMode: "single",
+                    top: 10,
+                    bottom: 10,
+                    layoutCenter: ["50%", "50%"],
+                    //layoutSize: "100%", //保持地图宽高比
+                    label: {
+                        show: true,
+                        fontSize: 10,
+                        color: "#ceac09"
+                    }
+                },
+                series: [{
+                    name: "地域分布",
+                    type: "map",
+                    geoIndex: 0
+                }]
+            };
+            mapChart.setOption(mapChartOpt);
+            $.ajax({
+                url: "data/rainfall.json",
+                dataType: "json"
+            }).done(function() {
+                $("#mapChart").addClass("chart-done");
+            }).done(function(data) {
+                console.log('Data: ', data);
+                const chartData = [];
+                for (let i in data) {
+                    chartData.push({
+                        name: data[i].region,
+                        value: data[i].count
+                    });
+                }
+                mapChart.setOption({
+                    series: [{
+                        name: "地域分布",
+                        data: chartData
+                    }]
+                });
+            }).fail(function(jqXHR) {
+                console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+            });
+            </script>
+            <div class="henen_title">全省降雨分布图</div>
+        </div>
+        <div class="right_1 margin_lf">
+        <div class="main_right margin_lf1">
+            <div class="main_right_1">
+                <div class="main_right_2"></div>
+            </div>
+            <div class="main_right_title">空气湿度</div>
+           <!--  <img src="img/main_right_x.png" alt=""> -->
+            <div class="main_right_x">01</div>
+            <div class="circleProgress_wrapper">
+                <div class="wrapper1 right">
+                    <div class="circleProgress bgright"></div>
+                    <div class="circleProgress rightcircle"></div>
+                </div>
+                <div class="wrapper1 left">
+                    <div class="circleProgress bgleft"></div>
+                    <div class="circleProgress leftcircle"></div>
+                </div>
+            </div>
+            <div class="kqsd">75%</div>
+            <div class="main_x">
+                <div class="main_x_1"></div>
+                <div class="kqsd_t">湿度<span>适宜</span></div>
+            </div>
+            <div class="main_x" style="left: 51%;top: -97%;">
+                <div class="main_x_1"></div>
+                <div class="kqsd_t_r">同比增长<span class="span1"><span>+</span>150%</span></div>
+            </div>
+        </div>
+        <div class="main_right margin_lf1">
+            <div class="main_right_1">
+                <div class="main_right_2"></div>
+            </div>
+            <div class="main_right_title">郑州温度变化</div>
+            <!-- <img class="img0" src="img/main_right_x.png" alt=""> -->
+            <div class="main_right_x">02</div>
+            <div id="mychart3"></div>
+            <script src="../assets/weather/js/pie_chart3.js"></script>
+            <div class="main_x" style="width: 90%; top: -124.6%; left: 5%;">
+                <div class="main_x_1"></div>
+                <div class="kqsd_t_r">温度增幅变化最大<span class="span1"><span class="span2">郑州</span><span>+</span>20.60度</span></div>
+            </div>
+        </div>
+        <div class="main_right margin_lf1">
+            <div class="main_right_1">
+                <div class="main_right_2"></div>
+            </div>
+            <div class="main_right_title">土壤湿度变化</div>
+            <!-- <img class="img1" src="img/main_right_x.png" alt=""> -->
+            <div class="main_right_x">03</div>
+            <div id="mychart2"></div>
+            <script src="../assets/weather/js/pie_chart2.js"></script>
+            <div class="main_x" style="width: 90%; top: -124.6%; left: 5%;">
+                <div class="main_x_1"></div>
+                <div class="kqsd_t_r">湿度增幅变化最大<span class="span1"><span class="span2">长葛</span><span>+</span>190%</span></div>
+            </div>
+        </div>
+        <div class="main_right margin_lf1 margin_top">
+            <div class="main_right_1">
+                <div class="main_right_2"></div>
+            </div>
+            <div class="main_right_title top1">降雨量排名</div>
+            <!-- <img src="img/main_right_x.png" alt=""> -->
+            <div class="main_right_x top1">04</div>
+            <div class="jyl">
+                <span class="span4">1.信阳 </span><br>
+                <span class="span4">2.驻马店 </span><br>
+                <span class="span4">3.新乡 </span><br>
+                <span class="span4">4.周口 </span><br>
+                <span class="span4">5.南阳 </span><br>
+                <span class="span4">6.安阳 </span>
+            </div>
+            <div class="jyl1">
+                <span class="span5"> 1339.1(毫米/年)</span><br>
+                <span class="span5"> 935.7(毫米/年)</span><br>
+                <span class="span5"> 813.9(毫米/年)</span><br>
+                <span class="span5"> 785.5(毫米/年)</span><br>
+                <span class="span5"> 783.6(毫米/年)</span><br>
+                <span class="span5"> 782.4(毫米/年)</span>
+            </div>
+            <div class="main_x" style="width: 90%; top: -140%; left: 5%;">
+                <div class="main_x_1"></div>
+                <div class="kqsd_t_r">平均降水量：<span class="span1"><span class="span2">&nbsp &nbsp &nbsp 493</span><span class="span3">(毫米/年)</span></span></div>
+            </div>
+        </div>
+        <div class="main_right margin_lf1 margin_top">
+            <div class="main_right_1">
+                <div class="main_right_2"></div>
+            </div>
+            <div class="main_right_title top1">实时平均温度(度)</div>
+           <!--  <img class="img0" src="img/main_right_x.png" alt=""> -->
+            <div class="main_right_x top1">05</div>
+            <div id="mychart"></div>
+            <script src="../assets/weather/js/pie_chart.js"></script>
+            <div class="main_x" style="top: -100%;">
+                <div class="main_x_1"></div>
+                <div class="kqsd_t_r">最高温度<span class="span1"><span class="span2">25.3</span>度</span></div>
+            </div>
+            <div class="main_x" style="top: -123%; left: 51%;">
+                <div class="main_x_1"></div>
+                <div class="kqsd_t_r">最低温度<span class="span1"><span class="span2">9.8</span>度</span></div>
+            </div>
+        </div>
+        <div class="main_right margin_lf1 margin_top">
+            <div class="main_right_1">
+                <div class="main_right_2"></div>
+            </div>
+            <div class="main_right_title top1">实时平均土壤湿度</div>
+          <!--   <img class="img1" src="img/main_right_x.png" alt=""> -->
+            <div class="main_right_x top1">06</div>
+            <div id="mychart1"></div>
+            <script src="../assets/weather/js/pie_chart1.js"></script>
+            <div class="main_x" style="top: -100%;">
+                <div class="main_x_1"></div>
+                <div class="kqsd_t_r">最高湿度<span class="span1"><span class="span2">45</span>%</span></div>
+            </div>
+            <div class="main_x" style="top: -123%; left: 51%;">
+                <div class="main_x_1"></div>
+                <div class="kqsd_t_r">最低湿度<span class="span1">15%</span></div>
+            </div>
+        </div>
+        </div>
+    </div>
+</body>
+
+</html>

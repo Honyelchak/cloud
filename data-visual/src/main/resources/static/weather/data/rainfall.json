@@ -1,0 +1,75 @@
+[
+	{
+		"region": "郑州市",
+		"count": 684.3
+	},
+	{
+		"region": "开封市",
+		"count": 610.3
+	},
+	{
+		"region": "洛阳市",
+		"count": 639.9
+	},
+	{
+		"region": "平顶山市",
+		"count": 732.7
+	},
+	{
+		"region": "安阳市",
+		"count": 782.4
+	},
+	{
+		"region": "鹤壁市",
+		"count": 684.0
+	},
+	{
+		"region": "新乡市",
+		"count": 813.9
+	},
+	{
+		"region": "焦作市",
+		"count": 591.5
+	},
+	{
+		"region": "濮阳市",
+		"count": 602.2
+	},
+	{
+		"region": "许昌市",
+		"count": 664.8
+	},
+	{
+		"region": "漯河市",
+		"count": 715.8
+	},
+	{
+		"region": "三门峡市",
+		"count": 600.6
+	},
+	{
+		"region": "南阳市",
+		"count": 772.8
+	},
+	{
+		"region": "商丘市",
+		"count": 730.4
+	},
+	{
+		"region": "信阳市",
+		"count": 1339.1
+	},
+	{
+		"region": "周口市",
+		"count": 785.5
+	},
+	{
+		"region": "驻马店市",
+		"count": 935.7
+	},
+	{
+		"region": "济源市",
+		"count": 684.7
+	}
+	
+]

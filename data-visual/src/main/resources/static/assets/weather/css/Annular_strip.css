@@ -1,0 +1,75 @@
+.circleProgress_wrapper{
+    width: 100px;
+    height: 100px;
+    margin: 0px auto;
+    z-index: 10;
+    position: relative;
+    top: -90%;
+    right: 0px;
+}
+.wrapper1{
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top:0;
+    border:0px;
+    overflow: hidden;
+}
+.right{
+    right:0;
+}
+.left{
+    left:0;
+}
+.circleProgress{
+    width: 160%;
+    height: 80%;
+    border:10px solid transparent;
+    border-radius: 50%;
+    position: absolute;
+    top:0;
+}
+.bgright{
+    border-top:10px solid #234591; 
+    border-right:10px solid #234591; 
+    right:0;
+    -webkit-transform: rotate(45deg);
+}
+.bgleft{
+    border-bottom:10px solid #234591; 
+    border-left:10px solid #234591; 
+    left:0;
+    -webkit-transform: rotate(45deg);
+}
+.rightcircle{
+    border-top:10px solid #0194DC;
+    border-right:10px solid #0194DC;
+    right:0;
+    -webkit-animation: circleProgressLoad_right 2s linear 1;
+    animation-fill-mode: forwards;
+    -webkit-transform: rotate(-135deg);
+}
+.leftcircle{
+    border-bottom:10px solid #0194DC;
+    border-left:10px solid #0194DC;
+    left:0;
+    -webkit-animation: circleProgressLoad_left 2s linear 1;
+    animation-fill-mode: forwards;
+    -webkit-transform: rotate(-136deg);
+}
+@-webkit-keyframes circleProgressLoad_right{
+    0%{
+        -webkit-transform: rotate(-135deg);
+    }
+    50%,100%{
+        -webkit-transform: rotate(45deg);
+    }
+}
+@-webkit-keyframes circleProgressLoad_left{
+    0%,50%{
+        -webkit-transform: rotate(-135deg);
+    }
+    100%{
+        -webkit-transform: rotate(-45deg);
+    }
+}

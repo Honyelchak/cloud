@@ -1,0 +1,62 @@
+[
+	{
+		"order": 1,
+		"stock_code": "Zhoukou",
+		"stock_name": "驻马店",
+		"market_capitalization": 482.28
+	},
+	{
+		"order": 2,
+		"stock_code": "Zhumadian",
+		"stock_name": "南阳",
+		"market_capitalization": 400.38
+	},
+	{
+		"order": 3,
+		"stock_code": "Shangqiu",
+		"stock_name": "周口",
+		"market_capitalization":322.03
+	},
+	{
+		"order": 4,
+		"stock_code": "Nanyang",
+		"stock_name": "商丘",
+		"market_capitalization": 320.54
+	},
+	{
+		"order": 5,
+		"stock_code": "Xinxiang",
+		"stock_name": "新乡市",
+		"market_capitalization":212.1
+	},
+	{
+		"order": 6,
+		"stock_code": "Anyang",
+		"stock_name": "开封",
+		"market_capitalization":195.86
+	},
+	{
+		"order": 7,
+		"stock_code": "Kaifeng",
+		"stock_name": "安阳",
+		"market_capitalization": 195.08
+	},
+	{
+		"order": 8,
+		"stock_code": "Xuchang",
+		"stock_name": "信阳",
+		"market_capitalization": 139.06
+	},
+	{
+		"order": 9,
+		"stock_code": "Puyang",
+		"stock_name": "洛阳",
+		"market_capitalization": 137.82
+	},
+	{
+		"order": 10,
+		"stock_code": "Luoyang",
+		"stock_name": "许昌",
+		"market_capitalization":131.4
+	}
+]

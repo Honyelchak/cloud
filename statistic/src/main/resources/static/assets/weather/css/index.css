@@ -1,0 +1,462 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background-color: #0E2A43;
+    margin: 0px;
+    font-family: Microsoft Yahei, Arial, sans-serif;
+    text-align: center;
+}
+.img_1 {
+    width: 661px;
+    height: 60px;
+    overflow: hidden;
+    margin: 0 auto;
+    position: relative;
+    top: -8px;
+}
+
+.img_1 img {
+    width: 640px;
+    position: relative;
+    top: -135px;
+    margin: 0 auto;
+    display:block;
+}
+
+.head_1 {
+    width: 316px;
+    height: 57px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+    font-weight: lighter;
+    font-size: 28px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+
+
+
+.wrap {
+    width: 100%;
+    height: 810px;
+    margin: 0 auto;
+    display: flex;
+    overflow: hidden;
+
+}
+
+.main_left {
+/*width: 11%;*/
+flex: 0.8;
+z-index: 0;
+background-color: #16203B;
+
+position: relative;
+}
+
+.main_left_1 {
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/main_0.png");
+    background-repeat: no-repeat;
+    filter: blur(2px);
+    z-index: 1;
+}
+
+.main_left_2 {
+    width: 100%;
+    height: 100%;
+    background: rgba(29, 22, 52, 0.5) none repeat scroll 0% 0%;
+    z-index: 3;
+}
+
+.main_left1 {
+    position: absolute;
+    top: 23px;
+    left: 10px;
+    z-index: 100;
+}
+
+.main_left1 span {
+    font-size: 18px;
+    color: #FFF;
+}
+
+.main_left_text1 {
+	position: absolute;
+top: 80px;
+z-index: 10;
+left: 20px;
+width: 80%;
+}
+
+.main_left_text1 ul{
+	list-style: none;
+	text-align: left;
+	color: #137DD9;
+}
+
+.main_left_text1 li{
+	font-size: 13px;
+	width: 100%;
+	height: 29px;
+	border-bottom: 2px solid #0D3992;
+	margin-top: 19px;
+    overflow: hidden;
+}
+
+li div{
+	height: 1px;
+	border-bottom: 2px solid #1370FB;
+	position: relative;
+	top: 9px;
+}
+
+.div1{
+	width: 100%;
+}
+
+.div2{
+	width: 95%;
+}
+
+.div3{
+	width: 92%;
+}
+
+.div4{
+	width: 88%;
+}
+
+.div5{
+	width: 82%;
+}
+
+.div6{
+	width: 80%;
+}
+
+.div7{
+	width: 78%;
+}
+
+.div8{
+	width: 76%;
+}
+
+.div9{
+	width: 72%;
+}
+
+.div10{
+	width: 68%;
+}
+
+.div11{
+	width: 64%;
+}
+
+.div12{
+	width: 60%;
+}
+
+.div13{
+	width: 58%;
+}
+
+.main_left_text1 span{
+	color: #FFF;
+}
+
+.margin_lf {
+    margin-left: 0.35%;
+}
+
+.margin_lf1 {
+    margin-left: 1.5%;
+}
+
+.main_middle {
+    
+    
+    flex:3;
+    z-index: 0;
+    background-color: #021650;
+   
+
+}
+
+.main_middle_1 {
+    width: 100%;
+
+    background-image: url("../images/main_0.png") no-repeat  no-repeat;
+  /*   background-repeat: no-repeat; */
+    filter: blur(2px);
+    z-index: 1;
+}
+
+.main_middle_2 {
+    width: 100%;
+    height: 100%;
+    background: rgba(2, 22, 80, 1.0) none repeat scroll 0% 0%;
+    z-index: 3;
+    box-shadow: 0 0 10px #14377C;
+}
+
+#main {
+    width: 98%;
+    height: 800px;
+    margin: 10px 8px;
+
+    z-index: 100;
+}
+
+.henen_title {
+    font-size: 25px;
+    color: #1397FF;
+    position: absolute;
+    top: 10px;
+    left: 16%;
+    z-index: 100;
+}
+
+
+.margin_top {
+    margin-top: 1.5%;
+}
+
+.right_1{
+
+    flex:3.2;
+    margin-right: 10px;
+    
+}
+
+
+.main_right {
+    flex: 1;
+    width: 31.8%;
+    height: 50%;
+    display: block;
+    z-index: 0;
+    float: left;
+}
+
+.main_right_1 {
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/main_1.png");
+    background-size:cover;
+    background-repeat: repeat;
+    filter: blur(2px);
+    z-index: 1;
+}
+
+.main_right_2 {
+    width: 100%;
+    height: 100%;
+    background: rgba(29, 22, 52, 0) none repeat scroll 0% 0%;
+    z-index: 3;
+}
+
+.main_right_title {
+    position: absolute;
+    width: 211px;
+    height: 30px;
+    color: #FFF;
+    z-index: 10;
+    padding-left: 10px;
+    padding-top: 10px;
+    font-size: 16px;
+    top: 133px;
+    text-align: left;
+}
+
+.main_right img {
+    position: relative;
+    width: 7%;
+    height: 28px;
+    top: -95%;
+    left: 20%;
+}
+
+.main_right_x {
+    position: relative;
+    width: 97%;
+    height: 50px;
+    color: #2EDBFF;
+    z-index: 10;
+    padding-top: 0px;
+    font-size: 36px;
+    top: -97.5%;
+    text-align: right;
+}
+#main00 {
+    width: 88%;
+height: 400px;
+position: relative;
+top: -450px;
+left: 8%;
+z-index: 100;
+}
+
+.top1 {
+    top: 546px;
+}
+
+.main_right_x.top1{
+    top: -97.5%;
+}
+
+.margin_top img {
+    top: -95%;
+}
+
+.img0 {
+    right: 269px !important;
+}
+
+.img1 {
+    right: 48px !important;
+}
+
+.kqsd {
+    font-size: 20px;
+    color: #FFF;
+    position: relative;
+    z-index: 10;
+    top: -104%;
+}
+
+.main_x {
+    width: 90%;
+    height: 20%;
+    display: block;
+    z-index: 0;
+    position: relative;
+    top: -121.2%;
+    margin: 0 auto;
+}
+.main_x_l{
+    width: 45%;
+    height: 20%;
+    position: relative;
+    top: -96.1%;
+    margin-left: 11px;
+    float: left;
+}
+.main_x_1 {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background: rgba(0, 123, 255, 0.1) none repeat scroll 0% 0%;
+    filter: blur(2px);
+    z-index: 4;
+}
+
+.kqsd_t {
+    font-size: 25px;
+color: #FFF;
+position: relative;
+top: -55px;
+}
+
+.kqsd_t span {
+    font-size: 18px;
+    color: #1396FE;
+}
+
+.kqsd_t_r {
+    font-size: 14px;
+color: #1396FE;
+position: relative;
+top: -68px;
+text-align: left;
+padding-left: 30px;
+}
+
+.kqsd_t_r .span1 {
+    margin-top: 3px;
+    display: block;
+    font-size: 20px;
+    padding-left: 10px;
+}
+
+.span1 span {
+    color: #FF4E00;
+}
+
+.span1 .span2 {
+    color: #FFF;
+}
+
+.span1 .span3 {
+	color: #1396FE;
+    font-size: 15px;
+}
+
+#mychart {
+    width: 60%;
+    height: 60%;
+    position: relative;
+    top: -95%;
+    left: 20%;
+}
+
+#mychart1 {
+    width: 60%;
+    height: 60%;
+    position: relative;
+    top: -110%;
+    left: 20%;
+}
+
+#mychart2 {
+    width: 88%;
+    height: 80%;
+    padding: 10px;
+    position: relative;
+    top: -111%;
+    left: 0px;
+    z-index: 10;
+}
+
+#mychart3 {
+    width: 88%;
+    height: 80%;
+    padding: 10px;
+    position: relative;
+    top: -111%;
+    left: 0px;
+    z-index: 10;
+}
+
+.jyl{
+	text-align: left;
+font-size: 14px;
+line-height: 30px;
+position: relative;
+top: -98%;
+left: 30px;
+color: #1392F8;
+}
+.jyl1{
+	text-align: left;
+font-size: 14px;
+line-height: 30px;
+position: relative;
+top: -147.3%;
+left: 130px;
+color: #1392F8;
+}
+

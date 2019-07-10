@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小麦智慧生产大数据平台</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="../assets/platform/css/map.css">
+    <style>
+        .clear {
+            clear: both;
+        }
+
+        .uper ul {
+            margin-left: 10px;
+        }
+
+        p .counter {
+            display: block;
+            margin: 20px auto;
+            font-size: 64px;
+            font-family: Arial;
+            font-weight: bold;
+        }
+
+        .notice1 {
+            width: 100%; /*单行显示，超出隐藏*/
+            height: 90%; /*固定公告栏显示区域的高度*/
+            /* padding: 0 30px; */
+            /* background-color: #b3effe; */
+            overflow: hidden;
+        }
+
+        .notice1 .datadetail {
+            padding-left: 0px;
+            list-style: none;
+            line-height: 49px;
+            /*以下为了单行显示，超出隐藏*/
+            display: block;
+            text-align: left;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        .inform {
+            width: 100%; /*单行显示，超出隐藏*/
+            height: 90%; /*固定公告栏显示区域的高度*/
+            /* padding: 0 30px; */
+            /* background-color: #b3effe; */
+            overflow: hidden;
+        }
+
+        .inform .datadetail2 {
+            padding-left: 0px;
+            list-style: none;
+            line-height: 49px;
+
+            /*以下为了单行显示，超出隐藏*/
+            display: block;
+            text-align: left;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        .color4{
+            color:#fff;
+        }
+        .color4 b{
+            color:red;
+        }
+
+        #container {
+            top: -40px;
+        }
+    </style>
+</head>
+<body>
+<!-- 顶部 -->
+<div class="top">
+    <div class="left nav ">
+        <div class="index">
+            <a href="../index.html"><img src="../assets/platform/images/index.png" alt=""></a>
+        </div>
+        <ul>
+            <li class="">
+                <img src="../assets/platform/images/border.jpg" alt="边框">
+                <a href="../yield/index.html">产量监测</a>
+                <img src="../assets/platform/images/border2.jpg" alt="边框">
+            </li>
+            <li>
+                <img src="../assets/platform/images/border.jpg" alt="边框">
+                <a href="../monitor/index.html">灾害预警</a>
+                <img src="../assets/platform/images/border2.jpg" alt="边框">
+            </li>
+        </ul>
+    </div>
+
+    <div class="title">
+        小麦智慧生产大数据平台
+    </div>
+
+    <div class="right nav">
+        <ul>
+            <li class="">
+                <img src="../assets/platform/images/border.jpg" alt="边框">
+                <a href="../weather/index.html">物联网</a>
+                <img src="../assets/platform/images/border2.jpg" alt="边框">
+            </li>
+            <li>
+                <img src="../assets/platform/images/border.jpg" alt="边框">
+                <a href="../repository/index.html">知识库</a>
+                <img src="../assets/platform/images/border2.jpg" alt="边框">
+            </li>
+        </ul>
+    </div>
+
+</div>
+<!-- 顶部结束 -->
+<!-- 内容部分 -->
+<div class="wrapper">
+    <!-- 上面 -->
+    <div class="uper">
+        <ul>
+            <li class="data">
+                <div class="border_line">
+                    <span class="tr"></span>
+                    <span class="tb"></span>
+                    <span class="rt"></span>
+                    <span class="rb"></span>
+                </div>
+                <div class="item">
+
+                    <p class="item_title">预测产量（万吨）</p>
+                    <p class="item_data color2 counter" id="show">3450.16</p>
+                </div>
+            </li>
+
+            <li class="data">
+                <div class="border_line">
+                    <span class="tr"></span>
+                    <span class="tb"></span>
+                    <span class="rt"></span>
+                    <span class="rb"></span>
+                </div>
+                <div class="item">
+                    <p class="item_title">种植面积（万亩）</p>
+                    <p class="item_data color1 counter" id="area">8123.2</p>
+                </div>
+            </li>
+
+            <li class="data">
+                <div class="border_line">
+                    <span class="tr"></span>
+                    <span class="tb"></span>
+                    <span class="rt"></span>
+                    <span class="rb"></span>
+                </div>
+                <div class="item">
+                    <p class="item_title">数据总量（万条）</p>
+                    <p class="item_data color3 counter" id="count">1274</p>
+                </div>
+            </li>
+
+            <li class="data">
+                <div class="border_line">
+                    <span class="tr"></span>
+                    <span class="tb"></span>
+                    <span class="rt"></span>
+                    <span class="rb"></span>
+                </div>
+                <div class="item">
+                    <p class="item_title">决策量（万条）</p>
+                    <p class="item_data color5 counter" id="policy">130.3</p>
+                </div>
+            </li>
+
+            <li class="data">
+                <div class="border_line">
+                    <span class="tr"></span>
+                    <span class="tb"></span>
+                    <span class="rt"></span>
+                    <span class="rb"></span>
+                </div>
+                <div class="item">
+                    <p class="item_title">警告次数（次）</p>
+                    <p class="item_data color4 counter" id="warning">357</p>
+                </div>
+            </li>
+
+            <li class="data">
+                <div class="border_line">
+                    <span class="tr"></span>
+                    <span class="tb"></span>
+                    <span class="rt"></span>
+                    <span class="rb"></span>
+                </div>
+                <div class="item">
+                    <p class="item_title">知识库（万条）</p>
+                    <p class="item_data color7 counter" id="knowledge">330</p>
+                </div>
+            </li>
+
+            <li class="data">
+                <div class="border_line">
+                    <span class="tr"></span>
+                    <span class="tb"></span>
+                    <span class="rt"></span>
+                    <span class="rb"></span>
+                </div>
+                <div class="item">
+                    <p class="item_title">物联网数据（万条）</p>
+                    <p class="item_data color6 counter" id="datas">492</p>
+                </div>
+            </li>
+
+
+        </ul>
+
+    </div>
+    <!-- 下面 -->
+    <div class="below">
+        <!-- 左边 -->
+        <div class="left">
+            <div class="border_line">
+                <span class="tr"></span>
+                <span class="tb"></span>
+                <span class="rt"></span>
+                <span class="rb"></span>
+            </div>
+            <div class="title">各级县市产量预测</div>
+            <div class="list_data">
+                <!-- 数据字段 -->
+                <div class="list_header">
+                    <span>市</span>
+                    <span>产量（万吨）</span>
+                </div>
+                <!-- 数据列表 -->
+                <div class="notice1" onmouseover="hover()" onmouseout="notHover()">
+                    <ul>
+                        <div class="datadetail">
+
+						<span class="color2">三  门  峡  市
+</span>
+
+                            <span class="color3" id="city1">454</span>
+                        </div>
+                        <div class="datadetail">
+						<span class="color2">信  阳 市
+</span>
+
+                            <span class="color3" id="city2">506.79
+
+</span>
+                        </div>
+                        <div class="datadetail">
+						<span class="color2">南  阳  市
+</span>
+
+                            <span class="color3" id="city3">434.81
+</span>
+                        </div>
+                        <div class="datadetail">
+						<span class="color2">周  口  市
+</span>
+
+                            <span class="color3" id="city4">415.41
+</span>
+                        </div>
+                        <div class="datadetail">
+						<span class="color2">商  丘  市
+</span>
+
+                            <span class="color3" id="city5">270.11
+</span>
+                        </div>
+                        <div class="datadetail">
+						<span class="color2">安  阳  市
+</span>
+
+                            <span class="color3" id="city6">208.47
+</span>
+                        </div>
+                        <div class="datadetail">
+						<span class="color2">平  顶  山  市
+</span>
+
+                            <span class="color3" id="city7">189.54
+</span>
+                        </div>
+                        <div class="datadetail">
+						<span class="color2">开  封  市
+</span>
+
+                            <span class="color3" id="city8">166.52
+</span>
+                        </div>
+                        <div class="datadetail">
+						<span class="color2">新  乡  市
+</span>
+
+                            <span class="color3" id="city9">165.34
+</span>
+                        </div>
+                        <div class="datadetail">
+						<span class="color2">洛  阳  市
+</span>
+
+                            <span class="color3" id="city10">147.34
+</span>
+                        </div>
+                        <div class="datadetail">
+						<span class="color2">许  昌  市
+</span>
+
+                            <span class="color3" id="city11">147.34
+</span>
+                        </div>
+                        <div class="datadetail">
+						<span class="color2">郑  州  市
+</span>
+
+                            <span class="color3" id="city12">147.34
+</span>
+                        </div>
+                        <div class="datadetail">
+						<span class="color2">驻  马  店  市
+</span>
+
+                            <span class="color3" id="city13">147.34
+</span>
+                        </div>
+                    </ul>
+                    <ul id="p2"></ul>
+                </div>
+            </div>
+        </div>
+        <!-- 中间 -->
+        <div class="mid">
+            <div class="border_line">
+                <div id="container"></div>
+                <span class="tr"></span>
+                <span class="tb"></span>
+                <span class="rt"></span>
+                <span class="rb"></span>
+            </div>
+        </div>
+        <!-- 右边 -->
+        <div class="right">
+
+            <div class="damage">
+                <div class="border_line">
+                    <span class="tr"></span>
+                    <span class="tb"></span>
+                    <span class="rt"></span>
+                    <span class="rb"></span>
+                </div>
+                <div class="title">实时预警</div>
+                <div class="inform" onmouseover="hover2()" onmouseout="notHover2()">
+
+                    <ul id="informul">
+                        <!--<div class="datadetail2">
+                            <span class="color4"> 今天降雨量较多，请注意防范！！</span>
+                        </div>
+                        <div class="datadetail2">
+                            <span class="color4"> 高温红色预警，请做好降暑的准备！</span>
+                        </div>-->
+
+                    </ul>
+                    <ul id="p3"></ul>
+
+                </div>
+            </div>
+
+
+            <div class="yield">
+                <div class="border_line">
+                    <span class="tr"></span>
+                    <span class="tb"></span>
+                    <span class="rt"></span>
+                    <span class="rb"></span>
+                </div>
+                <div class="title">数据统计</div>
+                <div>
+                    <div id="main" style="width: 448px;height:390px;margin-left:10px;margin-top:-6px;"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script>
+<script type="text/javascript"
+        src='https://webapi.amap.com/maps?v=1.4.14&key=8d3db83c0aa5ea0202622aa204fe2f38'></script>
+<!-- UI组件库 1.0 -->
+<script src="https://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
+
+
+<!-- <script type="text/javascript" src="./echarts.all.js"></script> -->
+<script src="https://cdn.bootcss.com/echarts/4.1.0-rc.1/echarts.min.js"></script>
+<!-- <script type="text/javascript" src="js/echarts-3.8.5.min.js"></script> -->
+<script src="../assets/echarts-gl.min.js"></script>
+<script type="text/javascript" src="../assets/echarts-bmap.js"></script>
+
+<script type="text/javascript" src="../assets/platform/js/jquery.countup.min.js"></script>
+<script src="../assets/platform/js/jquery.waypoints.min.js"></script>
+<script src="../assets/platform/js/3dmap.js"></script>
+
+
+<script  type="text/javascript" >
+    var city = {
+        "Stations": [
+            {
+                "name":"郑州市",
+                "Longitude": "113.683462",
+                "Latitude": "34.822446"
+            },
+            {
+                "name":"安阳市",
+                "Longitude": "114.352482",
+                "Latitude": "36.103442"
+            },
+            {
+                "name":"新乡市",
+                "Longitude": "113.883991",
+                "Latitude": "35.302616"
+            },
+            {
+                "name":"许昌市",
+                "Longitude": "113.826063",
+                "Latitude": "34.022956"
+            },
+            {
+                "name":"平顶山",
+                "Longitude": "113.041396",
+                "Latitude": "34.627459"
+            },
+            {
+                "name":"信阳市",
+                "Longitude": "114.075031",
+                "Latitude": "32.123274"
+            },
+            {
+                "name":"南阳市",
+                "Longitude": "112.540918",
+                "Latitude": "32.999082"
+            },
+            {
+                "name":"开封市",
+                "Longitude": "114.341447",
+                "Latitude": "34.797049"
+            },
+            {
+                "name":"洛阳市",
+                "Longitude": "112.434468",
+                "Latitude": "34.663041"
+            },
+            {
+                "name":"商丘市",
+                "Longitude": "115.650497",
+                "Latitude": "34.437054"
+            },
+            {
+                "name":"焦作市",
+                "Longitude": "113.238266",
+                "Latitude": "35.23904"
+            },
+            {
+                "name":"鹤壁市",
+                "Longitude": "114.295444",
+                "Latitude": "35.748236"
+            },
+            {
+                "name":"濮阳市",
+                "Longitude": "115.041299",
+                "Latitude": "35.768234"
+            },
+            {
+                "name":"周口市",
+                "Longitude": "114.649653",
+                "Latitude": "33.620357"
+            },
+            {
+                "name":"漯河市",
+                "Longitude": "114.026405",
+                "Latitude": "33.575855"
+            },
+            {
+                "name":"驻马店市",
+                "Longitude": "114.024736",
+                "Latitude": "32.980169"
+            },
+            {
+                "name":"三门峡市",
+                "Longitude": "111.194099",
+                "Latitude": "34.777338"
+            },
+            {
+                "name":"济源市",
+                "Longitude": "112.601919",
+                "Latitude": "35.067243"
+            },
+        ]
+    };
+
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            // 请求类型
+            type: "POST",
+            // 请求url
+            url: "/IndexData/indexData",
+            // 请求的数据类型
+            dataType: "json",
+            // 响应成功之后执行的回调函数
+            success: function (data) {
+                if (data["data"] == null || data["data"] == "" || data["data"] == undefined) {
+                    console.log("首页IndexData无数据");
+                    return ;
+                }
+                var data1 = data["data"][0];
+                var show = document.getElementById('show');
+                show.innerHTML = data1[2];
+
+                var area = document.getElementById('area'), newData = JSON.stringify(data[1]);
+                area.innerHTML = data1[3];
+
+                var count = document.getElementById('count'),
+                    newData = JSON.stringify(data[2]);
+                count.innerHTML = data1[4];
+
+                var policy = document.getElementById('policy'),
+                    newData = JSON.stringify(data[3]);
+                policy.innerHTML = data1[5];
+
+                var warning = document.getElementById('warning'),
+                    newData = JSON.stringify(data[4]);
+                warning.innerHTML = data1[6];
+
+                var knowledge = document.getElementById('knowledge'),
+                    newData = JSON.stringify(data[5]);
+                knowledge.innerHTML = data1[7];
+
+                var datas = document.getElementById('datas'),
+                    newData = JSON.stringify(data[6]);
+                datas.innerHTML = data1[8];
+                // 数字滚动
+                $("P.counter").countUp();
+            }
+        });
+        // 右侧灾害
+        //代表时间
+        var a = new Date();
+        var timeStr = a.getFullYear() + "-" + (a.getMonth() + 1) + "-" + a.getDate() ;
+        $.ajax({
+            // 请求类型
+            type: "POST",
+            // 请求url
+            url: "/forecast/getToday",
+            // 请求的数据类型
+            dataType: "json",
+            data: {forecasTime:timeStr},
+            // 响应成功之后执行的回调函数
+            success: function (data) {
+                if (data["data"] == null || data["data"] == "" || data["data"] == undefined) {
+                    console.log("首页IndexData无数据");
+                    return ;
+                }
+                var points = data["data"];
+                var p = city["Stations"];
+                $("#informul").html();
+                for(var i = 0; i < points.length; i++) {
+                    var index = points[i][1][6] - '0', hoverString = "";
+                    if(!(points[i][1][8] == 1 && points[i][1][7] == 0))continue;
+                    if(points[i][1][5] != 0){
+                        index += 10;
+                    }
+                    index -= 1;
+
+                    hoverString += timeStr + "<i>" + p[index]["name"] + "</i>";
+                    if (points[i][2] == 2) {
+                        if (points[i][3] == 1) {
+                            hoverString += "<b>轻度</b>";
+                        } else if (points[i][3] == 2) {
+                            hoverString += "<b>重度</b>";
+                        }
+                        hoverString += "热干风";
+                    } else if (points[i][2] == 1) {
+                        if (points[i][3] == 1) {
+                            hoverString += "<b>轻度</b>";
+                        } else if (points[i][3] == 2) {
+                            hoverString += "<b>重度</b>";
+                        }
+                        hoverString += "晚霜冻害";
+                    }
+                    hoverString += "预警,请注意防范！";
+                    $("#informul").append("<div class=\"datadetail2\">" + "<span class=\"color4\"> "+ hoverString +"</span>" + "</div>");
+                }
+                var n2 = document.getElementsByClassName("inform")[0];
+                var p4 = document.getElementById("informul");
+                var p3 = document.getElementById("p3");
+
+                p3.innerHTML = p4.innerHTML;
+                var func2 = function () {
+                    n2.scrollTop++;
+                    if (n2.scrollTop >= p4.offsetHeight) {
+                        n2.scrollTop = 0;
+                    }
+                }
+                var timer2 = setInterval(func2, 20);
+                var hover2 = function () {
+                    clearInterval(timer2);
+                }
+                var notHover2 = function () {
+                    timer2 = setInterval(func2, 20);
+                }
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $.getJSON("/IndexData/getYieldByCity", function (data) {
+            var city1 = document.getElementById('city1');
+            city1.innerHTML = data["三门峡"];
+            var city2 = document.getElementById('city2');
+            city2.innerHTML = data["信阳"];
+            var city3 = document.getElementById('city3');
+            city3.innerHTML = data["南阳"];
+            var city4 = document.getElementById('city4');
+            city4.innerHTML = data["周口"];
+            var city5 = document.getElementById('city5');
+            city5.innerHTML = data["商丘"];
+            var city6 = document.getElementById('city6');
+            city6.innerHTML = data["安阳"];
+            var city7 = document.getElementById('city7');
+            city7.innerHTML = data["平顶山"];
+            var city8 = document.getElementById('city8');
+            city8.innerHTML = data["开封"];
+            var city9 = document.getElementById('city9');
+            city9.innerHTML = data["新乡"];
+            var city10 = document.getElementById('city10');
+            city10.innerHTML = data["洛阳"];
+            var city11 = document.getElementById('city11');
+            city11.innerHTML = data["许昌"];
+            var city12 = document.getElementById('city12');
+            city12.innerHTML = data["郑州"];
+            var city13 = document.getElementById('city13');
+            city13.innerHTML = data["驻马店"];
+            $(".notice1 #p2").html($(".notice1 ul:eq(0)").html());
+        });
+    });
+</script>
+
+
+<script type="text/javascript">
+
+    var myChart = echarts.init(document.getElementById('main'));
+    var data = [
+        {value: 200, name: '气象'},
+        {value: 360, name: '物联网'},
+        {value: 480, name: '知识库'},
+        {value: 600, name: '生产数据'},
+        {value: 800, name: '管理数据'},
+        {value: 320, name: '图像遥感'},
+    ];
+    var option = {
+        // title : {
+        //     text: '同名数量统计',
+        //     subtext: '纯属虚构',
+        //     x:'center'
+        // },
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            type: 'scroll',
+            orient: 'vertical',
+            left: 10,
+            top: 20,
+            bottom: 20,
+            data: data,
+
+            // selected: data.selected
+        },
+        series: [
+            {
+                name: '数据条数（条）',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '50%'],
+                data: data,
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.8)'
+                    }
+                }
+            }
+        ]
+    };
+
+    myChart.setOption(option);
+</script>
+
+<script type="text/javascript">
+
+    var n = document.getElementsByClassName("notice1")[0];
+    var p1 = n.getElementsByTagName("ul")[0];
+    var p2 = document.getElementById("p2");
+    p2.innerHTML = p1.innerHTML;
+    var func = function () {
+        n.scrollTop++;
+        if (n.scrollTop >= p1.offsetHeight) {
+            n.scrollTop = 0;
+        }
+    }
+    var timer1 = setInterval(func, 20);
+    var hover = function () {
+        clearInterval(timer1);
+    }
+    var notHover = function () {
+        timer1 = setInterval(func, 20);
+    }
+</script>
+
+<script type="text/javascript">
+
+
+</script>
+
+</body>
+</html>

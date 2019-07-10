@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+</head>
+<body>
+	<div id="main" style="width: 600px;height:400px;background: #15244f;"></div>
+
+		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="js/countUp.min.js"></script>
+		<script type="text/javascript" src="js/echarts.min.js"></script>
+		<script type="text/javascript" src="js/henan.js"></script>
+		<script type="text/javascript" src="js/echarts-theme-shine.js"></script>
+<script type="text/javascript">
+	//获取地域分布数据
+				const mapChart = echarts.init(document.getElementById("main"), "shine");
+				const mapChartOpt = {
+					tooltip: {
+						formatter: function(params) {
+							const data = params.data;
+							const suffix = '<span style="margin-left:5px;font-size:12px;">毫米</span>';
+							return data.name + "<br />降雨量：" + data.value + suffix;
+						}
+					},
+					visualMap: {
+						type: "piecewise",
+						splitNumber: 10,
+						itemWidth: 10,
+						itemHeight: 10,
+						itemGap: 5,
+						textGap: 5,
+						textStyle: {
+							fontSize: 10,
+							color: "#b0c2f9"
+						},
+						min: 0,
+						max: 1000,
+						calculable: true,
+						seriesIndex: [0]
+					},
+					geo: {
+						map: "河南",
+						roam: true, //开启鼠标缩放和漫游
+						zoom: 1, //地图缩放级别
+						selectedMode: "single",
+						top: 10,
+						bottom: 10,
+						layoutCenter: ["50%", "50%"],
+						//layoutSize: "100%", //保持地图宽高比
+						label: {
+							show: true,
+							fontSize: 10,
+							color: "#ceac09"
+						}
+					},
+					series: [{
+						name: "地域分布",
+						type: "map",
+						geoIndex: 0
+					}]
+				};
+				mapChart.setOption(mapChartOpt);
+				$.ajax({
+					url: "data/region-count.json",
+					dataType: "json"
+				}).done(function() {
+					$("#mapChart").addClass("chart-done");
+				}).done(function(data) {
+					console.log('Data: ', data);
+					const chartData = [];
+					for(let i in data) {
+						chartData.push({
+							name: data[i].region,
+							value: data[i].count
+						});
+					}
+					mapChart.setOption({
+						series: [{
+							name: "地域分布",
+							data: chartData
+						}]
+					});
+				}).fail(function(jqXHR) {
+					console.log("Ajax Fail: ", jqXHR.status, jqXHR.statusText);
+				});
+	</script>
+</body>
+</html>

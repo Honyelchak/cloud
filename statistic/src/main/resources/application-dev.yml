@@ -1,0 +1,33 @@
+#配置端口
+server:
+  port: 9999
+# Hibernate 相关配置
+
+
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        new_generator_mappings: false
+        format_sql: true
+        current_session_context_class: org.springframework.orm.hibernate4.SpringSessionContext
+        hbm2ddl:
+          auto: update                            # 建表方式
+  datasource:
+      hikari:
+        username: root            #用户名
+        password: xinguang             #密码
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://172.23.45.90/wheatdr?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+  application:
+    name: statistic
+#hibernate其他配置
+hibernate:
+  show_sql: true         # 显示Sql
+entitymanager:
+  packagesToScan: com.wheat.cloud.statistic
+eureka:
+  client:
+    serviceUrl:
+     defaultZone: http://server1:8761/eureka/

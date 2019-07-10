@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html  xmlns:th="http://www.thymeleaf.org" lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+		<title>小麦灾害预警监测</title>
+		<link rel="stylesheet" href="../assets/monitor/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../assets/monitor/css/app.css" />
+		<link rel="stylesheet" href="../assets/monitor/css/guangyun.css" />
+		<link rel="stylesheet" href="../assets/monitor/css/map.css">
+		<link rel="stylesheet" type="text/css" href="../assets/style.css" />
+		<style>
+			.notice {
+				 width: 100%;/*单行显示，超出隐藏*/
+				 height: 35px;/*固定公告栏显示区域的高度*/
+				 /* padding: 0 30px; */
+				 /* background-color: #b3effe; */
+				 overflow: hidden;
+			}
+			.notice ul{
+				padding-left:0px;
+			}
+			.notice ul li {
+				 list-style: none;
+				 line-height: 35px;
+				 /*以下为了单行显示，超出隐藏*/
+				 display: block;
+				 text-align:left;
+				 white-space: nowrap;
+				 text-overflow: ellipsis;
+				 overflow: hidden;
+			}
+ 			#main {
+				width: 100%;
+				height: 92%;
+				/* margin: auto;
+				border: 2px solid green; */
+			} 
+		</style>
+	</head>
+	
+	<body class="bg02">
+	
+
+		<div class="top ">
+			<div class="left nav ">
+				<div class="index">
+					<a href="../index.html" ><img src="../assets/platform/images/index.png" alt=""></a>
+				</div>
+				<ul >
+					<li class="">
+						<img src="../assets/platform/images/border.jpg" alt="边框">
+						<a href="../yield/index.html">产量监测</a>
+						<img src="../assets/platform/images/border2.jpg" alt="边框">
+					</li>
+					<li>
+						<img src="../assets/platform/images/border.jpg" alt="边框">
+						<a href="index.html">灾害预警</a>
+						<img src="../assets/platform/images/border2.jpg" alt="边框">
+					</li>
+				</ul>
+			</div>
+
+			<div class="title">
+				小麦灾害预警监测
+			</div>
+
+			<div class="right nav">
+				<ul >
+					<li class="">
+						<img src="../assets/platform/images/border.jpg" alt="边框">
+						<a href="../weather/index.html">物联网</a>
+						<img src="../assets/platform/images/border2.jpg" alt="边框">
+					</li>
+					<li>
+						<img src="../assets/platform/images/border.jpg" alt="边框">
+						<a href="../repository/index.html">知识库</a>
+						<img src="../assets/platform/images/border2.jpg" alt="边框">
+					</li>
+				</ul>
+			</div>
+
+
+
+
+		</div>
+	<div class="img_1">
+        <img src="../assets/monitor/images/head_1.gif" alt="">
+    </div>
+		
+		<div class="wrapper">
+			<div class="container-fluid">
+				<div class="row fill-h">
+					<div class="col-lg-7 fill-h">
+						<div class="xpanel-wrapper xpanel-wrapper-1">
+							<div class="xpanel">
+
+								<div class="inform">
+								<img src="../assets/monitor/images/inform.png" alt="">
+									<div class="notice">
+										<ul>
+											<li><span>警告：洛阳市汝阳县小麦监测站检测出冻害现象！</span></li>
+											<li><span>警告：南阳市宛城区小麦监测站检测出冻害现象！</span></li>
+											<li><span>警告：郑州市金水区小麦监测站检测出冻害现象！</span></li>
+											<li><span>警告：漯河市汝阳县小麦监测站检测出冻害现象！</span></li>
+											<li><span>警告：洛阳市汝阳县小麦监测站检测出冻害现象！</span></li>
+										</ul>
+									</div>
+								</div>
+								<!-- <div class="fill-h" id="container"></div> -->
+								<div id='main'></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-5 fill-h">
+						<div class="xpanel-wrapper xpanel-wrapper-2">
+							<div class="xpanel">
+								<div class="fill-h" id="coordChart"></div>
+							</div>
+						</div>
+						<div class="xpanel-wrapper xpanel-wrapper-2" style="">
+							<div class="xpanel">
+								<div class="fill-h" id="heatmapChart"></div>
+							</div>
+						</div>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	<script src="https://cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script>
+    <!-- 加载plugins方法：在src后边加参数名，以"，"隔开 -->
+    <script type="text/javascript" src='https://webapi.amap.com/maps?v=1.4.14&key=8d3db83c0aa5ea0202622aa204fe2f38'></script>
+    <!-- UI组件库 1.0 -->
+    <script src="https://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
+    <script src="../assets/monitor/js/index.js"></script>
+
+   <!-- echarts -->
+    	<!-- <script type="text/javascript" src="./echarts.all.js"></script> -->
+    	<script src="https://cdn.bootcss.com/echarts/4.1.0-rc.1/echarts.min.js"></script>
+		<!-- <script type="text/javascript" src="js/echarts-3.8.5.min.js"></script> -->
+		<script src="../assets/echarts-gl.min.js"></script>
+		<script type="text/javascript" src="../assets/echarts-bmap.js"></script>
+		
+		<!-- <script src="js/map.js"></script> -->
+		
+		<script type="text/javascript" th:inline="none">
+			$(function() {
+				/*************** 笛卡尔坐标系上的热力图 **************/
+				//初始化echarts实例
+				const coordChart= echarts.init(document.getElementById("coordChart"));
+				//数据
+				const hours = ['0a', '1a', '2a', '3a', '4a', '5a', '6a', '7a', '8a', '9a', '10a', '11a', '12p',
+					'1p', '2p', '3p', '4p', '5p', '6p', '7p', '8p', '9p', '10p', '11p'];
+                const days = ["周一", "周二", "周三","周四","周五","周六","周日"];
+				//配置
+				const coordOpt = {
+					tooltip: {
+				        position: 'top'
+				   },
+				    grid: {
+				        top: 0,
+				        bottom: 25,
+				        left: 100,
+				        right: 10,
+				    },
+				    xAxis: {
+				        type: 'category',
+				        data: hours,
+				        splitArea: {
+				            show: true
+				        }
+				    },
+				    yAxis: {
+				        type: 'category',
+				        data: days,
+				        splitArea: {
+				            show: true
+				        }
+				    },
+				    axisLabel: {
+				    	color: '#fff'
+				    },
+				    visualMap: {
+				        min: 0,
+				        max: 20,
+				        calculable: true,
+				        left: 'left',
+				        bottom: 20,
+				        itemWidth: 10,
+				        itemHeight: 80,
+				        textStyle: {
+				        	color: '#fff'
+				        }
+				    },
+				    series: [{
+				        name: 'Coord Heatmap',
+				        type: 'heatmap',
+				        label: {
+				            normal: {
+				                show: true
+				            }
+				        },
+				        itemStyle: {
+				            emphasis: {
+				                shadowBlur: 10,
+				                shadowColor: 'rgba(0, 0, 0, 0.5)'
+				            }
+				        }
+				    }] 
+				};
+				//渲染图表
+				coordChart.setOption(coordOpt)
+				$.getJSON('../assets/monitor/data/coord.json').done(function(data) {
+					let coordData = data.map(function(item) {
+						return [item[1], item[0], item[2] || '-'];
+					});
+					coordChart.setOption({
+						series: [{
+							name: 'Coord Heatmap',
+							data: coordData
+						}]
+					});
+				});
+				
+				/******************* 热力图 **********************/
+				//初始化echarts实例
+				const heatmapChart = echarts.init(document.getElementById("heatmapChart"));
+                let hours1 = ['0a', '1a', '2a', '3a', '4a', '5a', '6a',
+				             '7a', '8a', '9a','10a','11a',
+				             '12p', '1p', '2p', '3p', '4p', '5p',
+				             '6p', '7p', '8p', '9p', '10p', '11p'];
+                let days1 = ["周一", "周二", "周三","周四","周五","周六","周日"];
+
+				     let data =[[0,0,0],[0,1,0],[0,2,0],[0,3,0],[0,4,0],[0,5,0],[0,6,0],[0,7,0],[0,8,0],[0,9,0],[0,10,0],[0,11,0],[0,12,0],[0,13,0],[0,14,0],[0,15,0],[0,16,0.2],[0,17,1.8],[0,18,1.9],[0,19,0.8],[0,20,2.0],[0,21,1.4],[0,22,0.1],[0,23,0],
+				                [1,0,0],[1,1,0],[1,2,0],[1,3,0],[1,4,0],[1,5,0],[1,6,0],[1,7,0],[1,8,0],[1,9,0],[1,10,0],[1,11,0],[1,12,0],[1,13,0],[1,14,1.7],[1,15,2.3],[1,16,0.5],[1,17,0],[1,18,0.5],[1,19,1.2],[1,20,2.2],[1,21,0.6],[1,22,0.3],[1,23,0],
+				                [2,0,0],[2,1,0],[2,2,0],[2,3,0.6],[2,4,1.5],[2,5,1.2],[2,6,0.3],[2,7,0],[2,8,0],[2,9,0],[2,10,0.1],[2,11,0],[2,12,0.1],[2,13,0],[2,14,0],[2,15,0],[2,16,0],[2,17,0],[2,18,0],[2,19,0],[2,20,0],[2,21,0],[2,22,0],[2,23,0],
+				                [3,0,0.5],[3,1,0.9],[3,2,0],[3,3,1.3],[3,4,0.9],[3,5,0.6],[3,6,0.9],[3,7,1.6],[3,8,0],[3,9,0.5],[3,10,0],[3,11,0],[3,12,0],[3,13,0],[3,14,0],[3,15,0],[3,16,0],[3,17,0],[3,18,0],[3,19,0],[3,20,0],[3,21,0],[3,22,0],[3,23,0],
+				                [4,0,0],[4,1,0],[4,2,0],[4,3,0],[4,4,0],[4,5,0],[4,6,0],[4,7,0],[4,8,0],[4,9,0],[4,10,0],[4,11,0],[4,12,0],[4,13,0.6],[4,14,1],[4,15,1.6],[4,16,0.5],[4,17,0.8],[4,18,0.1],[4,19,0],[4,20,0],[4,21,0],[4,22,0],[4,23,0],
+				                [5,0,0],[5,1,0],[5,2,0],[5,3,0],[5,4,0],[5,5,0],[5,6,0],[5,7,0.1],[5,8,0],[5,9,0.1],[5,10,0.2],[5,11,0.4],[5,12,0.6],[5,13,0.4],[5,14,0.1],[5,15,1.8],[5,16,1.7],[5,17,0],[5,18,0],[5,19,0],[5,20,0],[5,21,0],[5,22,0],[5,23,0],
+				                [6,0,0],[6,1,0],[6,2,0],[6,3,0],[6,4,0],[6,5,0],[6,6,0],[6,7,0],[6,8,0],[6,9,0],[6,10,0],[6,11,0],[6,12,0],[6,13,0],[6,14,0.2],[6,15,0.4],[6,16,0.8],[6,17,1.7],[6,18,0.6],[6,19,0.1],[6,20,0],[6,21,0],[6,22,0],[6,23,0]];
+
+				     option = {
+				         tooltip: {
+				             position: 'top'
+				         },
+				         title: [],
+				         singleAxis: [],
+				         series: [],
+				         textStyle: {
+					        	color: '#fff'
+					        }
+				     };
+
+				     echarts.util.each(days1, function (day, idx) {
+				         option.title.push({
+				             textBaseline: 'middle',
+				             top: (idx + 0.5) * 100 / 7 + '%',
+				             text: day,
+				             textStyle: {
+						        	color: '#1D81B6',
+						        	fontSize: 14
+						        },
+				         	
+				         });
+				         option.singleAxis.push({
+				             left: 150,
+				             type: 'category',
+				             boundaryGap: false,
+				             data: hours1,
+				             top: (idx * 100 / 7 + 5) + '%',
+				             height: (100 / 7 - 10) + '%',
+				             axisLabel: {
+				                 interval: 2,
+				             },
+				             /* lineStyle{
+				            	 color:'#fff'
+				             }  */
+				             
+				         });
+				     
+				         option.series.push({
+				             singleAxisIndex: idx,
+				             coordinateSystem: 'singleAxis',
+				             type: 'scatter',
+				             data: [],
+				             symbolSize: function (dataItem) {
+				                 return dataItem[1] * 16;
+				             }
+				         });
+				     });
+
+				     echarts.util.each(data, function (dataItem) {
+				         option.series[dataItem[0]].data.push([dataItem[1], dataItem[2]]);
+				     });
+				     
+				     heatmapChart.setOption(option);
+				
+				/********** 窗口大小改变时，重置报表大小 ********************/
+				window.onresize = function() {
+					//bmapChart.resize();
+					heatmapChart.resize();
+					coordChart.resize();
+				};
+			});
+			
+			
+			  function noticeUp(obj,top,time) {
+				 $(obj).animate({
+				 	marginTop: top
+				 }, time, function () {
+				 	$(this).css({marginTop:"0"}).find(":first").appendTo(this);
+				 })
+			}
+
+            let timer = setInterval("noticeUp('.notice ul','-35px',500)", 2500);
+			 
+			 $(function () {
+				    $(".notice").hover(function () {
+				        clearInterval(timer);
+				    }, function () {
+				        timer = setInterval("noticeUp('.notice ul','-35px',500)", 2500);
+				    })
+				})
+		</script>
+	</body>
+</html>
